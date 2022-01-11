@@ -1,0 +1,85 @@
+html { position: relative; margin: 0; padding: 0; height: 100%; }
+body { margin: 0; padding: 0; text-align: left; height: 100%; }
+#imPageExtContainer {min-height: 100%; }
+#imPageIntContainer { position: relative;}
+#imPage { position: relative; width: 100%; }
+#imHeaderBg { position: absolute; left: 0; top: 0; width: 100%; }
+#imContent { position: relative; }
+#imFooterBg { position: absolute; left: 0; bottom: 0; width: 100%; }
+#imStickyBarContainer { visibility: hidden; position: fixed; overflow: hidden; }
+@media (min-width: 1150px) {
+		#imPageExtContainer { background-image: none; background-color: rgba(255, 255, 255, 1); }
+		#imPage { padding-top: 0px; padding-bottom: 0px; min-width: 1150px; }
+		#imHeaderBg { height: 50px; background-image: none; background-color: rgba(255, 255, 255, 1); }
+		#imHeader { background-image: none; background-color: rgba(255, 255, 255, 1); }
+		#imHeaderObjects { margin-left: auto; margin-right: auto; position: relative; height: 50px; width:1150px; }
+		#imContent { align-self: start; padding: 0px 0 5px 0; }
+		#imContentGraphics { min-height: 400px; background-image: none; background-color: rgba(255, 255, 255, 1); }
+		#imFooterBg { height: 322px; background-image: none; background-color: rgba(0, 64, 16, 1); }
+		#imFooter { background-image: none; background-color: transparent; }
+		#imFooterObjects { margin-left: auto; margin-right: auto; position: relative; height: 322px; width:1150px; }
+		#imSideBar { background-image: none; background-color: rgba(211, 218, 220, 1); overflow: visible; zoom: 1; z-index: 200; }
+		#imSideBarObjects { position: relative; height: 400px; }
+		#imStickyBarContainer { top: 0; left: 0; right: 0; margin: auto; width: 100%; height: 50px; box-sizing: border-box; z-index: 10301; }
+		#imStickyBarGraphics { top: 0; left: 0; right: 0; margin: auto; width: 100%; height: 50px; box-sizing: border-box; background-image: none; background-color: rgba(255, 255, 255, 1); position: absolute; opacity: 0.75}
+		#imStickyBar { position: relative; top: 0; left: 0; margin: auto; width: 1150px }
+		#imStickyBarObjects { position: relative; height: 50px; }
+	
+}
+@media (max-width: 1149.9px) and (min-width: 720px) {
+		#imPageExtContainer { background-image: none; background-color: rgba(255, 255, 255, 1); }
+		#imPage { padding-top: 0px; padding-bottom: 0px; min-width: 720px; }
+		#imHeaderBg { height: 41px; background-image: none; background-color: rgba(255, 255, 255, 1); }
+		#imHeader { background-image: none; background-color: rgba(255, 255, 255, 1); }
+		#imHeaderObjects { margin-left: auto; margin-right: auto; position: relative; height: 41px; width:720px; }
+		#imContent { align-self: start; padding: 0px 0 5px 0; }
+		#imContentGraphics { min-height: 400px; background-image: none; background-color: rgba(255, 255, 255, 1); }
+		#imFooterBg { height: 463px; background-image: none; background-color: rgba(0, 64, 16, 1); }
+		#imFooter { background-image: none; background-color: transparent; }
+		#imFooterObjects { margin-left: auto; margin-right: auto; position: relative; height: 463px; width:720px; }
+		#imSideBar { background-image: none; background-color: rgba(211, 218, 220, 1); overflow: visible; zoom: 1; z-index: 200; }
+		#imSideBarObjects { position: relative; height: 400px; }
+		#imStickyBarContainer { top: 0; left: 0; right: 0; margin: auto; width: 100%; height: 42px; box-sizing: border-box; z-index: 10301; }
+		#imStickyBarGraphics { top: 0; left: 0; right: 0; margin: auto; width: 100%; height: 42px; box-sizing: border-box; background-image: none; background-color: rgba(255, 255, 255, 1); position: absolute; opacity: 0.75}
+		#imStickyBar { position: relative; top: 0; left: 0; margin: auto; width: 720px }
+		#imStickyBarObjects { position: relative; height: 42px; }
+	
+}
+@media (max-width: 719.9px) and (min-width: 480px) {
+		#imPageExtContainer { background-image: none; background-color: rgba(255, 255, 255, 1); }
+		#imPage { padding-top: 0px; padding-bottom: 0px; min-width: 480px; }
+		#imHeaderBg { height: 41px; background-image: none; background-color: rgba(255, 255, 255, 1); }
+		#imHeader { background-image: none; background-color: rgba(255, 255, 255, 1); }
+		#imHeaderObjects { margin-left: auto; margin-right: auto; position: relative; height: 41px; width:480px; }
+		#imContent { align-self: start; padding: 0px 0 5px 0; }
+		#imContentGraphics { min-height: 100px; background-image: none; background-color: rgba(255, 255, 255, 1); }
+		#imFooterBg { height: 746px; background-image: none; background-color: rgba(0, 64, 16, 1); }
+		#imFooter { background-image: none; background-color: transparent; }
+		#imFooterObjects { margin-left: auto; margin-right: auto; position: relative; height: 746px; width:480px; }
+		#imSideBar { background-image: none; background-color: rgba(211, 218, 220, 1); overflow: visible; zoom: 1; z-index: 200; }
+		#imSideBarObjects { position: relative; height: 100px; }
+		#imStickyBarContainer { top: 0; left: 0; right: 0; margin: auto; width: 100%; height: 42px; box-sizing: border-box; z-index: 10301; }
+		#imStickyBarGraphics { top: 0; left: 0; right: 0; margin: auto; width: 100%; height: 42px; box-sizing: border-box; background-image: none; background-color: rgba(255, 255, 255, 1); position: absolute; opacity: 0.75}
+		#imStickyBar { position: relative; top: 0; left: 0; margin: auto; width: 480px }
+		#imStickyBarObjects { position: relative; height: 42px; }
+	
+}
+@media (max-width: 479.9px)  {
+		#imPageExtContainer { background-image: none; background-color: rgba(255, 255, 255, 1); }
+		#imPage { padding-top: 0px; padding-bottom: 0px; }
+		#imHeaderBg { height: 41px; background-image: none; background-color: rgba(255, 255, 255, 1); }
+		#imHeader { background-image: none; background-color: rgba(255, 255, 255, 1); }
+		#imHeaderObjects { margin-left: auto; margin-right: auto; position: relative; height: 41px; width:320px; }
+		#imContent { align-self: start; padding: 0px 0 5px 0; }
+		#imContentGraphics { min-height: 200px; background-image: none; background-color: rgba(255, 255, 255, 1); }
+		#imFooterBg { height: 746px; background-image: none; background-color: rgba(0, 64, 16, 1); }
+		#imFooter { background-image: none; background-color: transparent; }
+		#imFooterObjects { margin-left: auto; margin-right: auto; position: relative; height: 746px; width:320px; }
+		#imSideBar { background-image: none; background-color: transparent; overflow: visible; zoom: 1; z-index: 200; }
+		#imSideBarObjects { position: relative; height: 200px; }
+		#imStickyBarContainer { top: 0; left: 0; right: 0; margin: auto; width: 100%; height: 42px; box-sizing: border-box; z-index: 10301; }
+		#imStickyBarGraphics { top: 0; left: 0; right: 0; margin: auto; width: 100%; height: 42px; box-sizing: border-box; background-image: none; background-color: rgba(255, 255, 255, 1); position: absolute; opacity: 0.75}
+		#imStickyBar { position: relative; top: 0; left: 0; margin: auto; width: 320px }
+		#imStickyBarObjects { position: relative; height: 42px; }
+	
+}

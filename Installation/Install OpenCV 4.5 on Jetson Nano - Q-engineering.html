@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)https://qengineering.eu/install-opencv-4.5-on-jetson-nano.html -->
+<html prefix="og: http://ogp.me/ns#" lang="en-GB" dir="ltr" class=" svg canvas video supports no-touchevents fullscreen cssanimations csstransforms csstransforms3d csstransitions"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Install OpenCV 4.5 on Jetson Nano - Q-engineering</title>
+		
+		<!--[if IE]><meta http-equiv="ImageToolbar" content="False" /><![endif]-->
+		<meta name="author" content="Q-engineering">
+		<meta name="generator" content="Incomedia WebSite X5 Evo 2019.3.17 - www.websitex5.com">
+		<meta name="description" content="A thorough guide on how to install OpenCV 4.5.2 on your NVIDIA Jetson Nano">
+		<meta name="keywords" content="Install OpenCV 4.5 on Jetson Nano, cuDNN, CUDA, jtop, NVIDIA Jetson overview,Qt5">
+		<meta property="og:url" content="https://qengineering.eu/install-opencv-4.5-on-jetson-nano.html">
+		<meta property="og:type" content="website">
+		<meta property="og:description" content="A thorough guide on how to install OpenCV 4.5.2 on your NVIDIA Jetson Nano">
+		<meta property="og:title" content="Install OpenCV 4.5 on Jetson Nano - Q-engineering">
+		<meta property="og:image" content="https://qengineering.eu/favImage.png">
+		<meta property="og:image:type" content="image/png">
+		<meta property="og:image:width" content="1200">
+		<meta property="og:image:height" content="1200">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="stylesheet" href="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/reset.css" media="screen,print">
+		<link rel="stylesheet" href="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/print.css" media="print">
+		<link rel="stylesheet" href="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/style.css" media="screen,print">
+		<link rel="stylesheet" href="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/template.css" media="screen">
+		<link rel="stylesheet" href="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/prism.css" media="screen, print">
+		<link rel="stylesheet" href="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/install-opencv-4.5-on-jetson-nano.css" media="screen,print">
+		<script type="text/javascript" async="" src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/analytics.js.descarga"></script><script type="text/javascript" async="" src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/js"></script><script src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/jquery.js.descarga"></script>
+		<script src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/x5engine.js.descarga" data-files-version="2019-3-17-1"></script>
+		<script src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/prism.js.descarga"></script><script src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/clipboard.min.js.descarga"></script>
+		<script>
+			x5engine.utils.currentPagePath = 'install-opencv-4.5-on-jetson-nano.html';
+		</script>
+		
+		<!--
+    <PageMap>
+        <DataObject type="thumbnail">
+          <Attribute name="src" value="images/Qdeep.jpg"/>
+          <Attribute name="width" value="700"/>
+          <Attribute name="height" value="700"/>
+        </DataObject>
+    </PageMap>
+-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/js(1)"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Z9EZXGLXX4');
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/js(2)"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-136574782-1');
+</script>
+
+<link rel="icon" href="https://qengineering.eu/favicon.ico" type="image/x-icon">
+
+<script>
+function init() {
+var imgDefer = document.getElementsByTagName('img');
+for (var i=0; i<imgDefer.length; i++) {
+if(imgDefer[i].getAttribute('data-src')) {
+imgDefer[i].setAttribute('src',imgDefer[i].getAttribute('data-src'));
+} } }
+window.onload = init;
+</script>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+
+<!-- JSON-LD-markeringen gegenereerd door Google Opmaakhulp voor het structureren van data. -->
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Article",
+  "headline" : "Install OpenCV 4.5 on Jetson Nano",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://qengineering.eu/Qdeep.jpg",
+      "width": 700,
+      "height": 700
+    },
+  "publisher" : {
+    "@type" : "Organization",
+    "name" : "Q-engineering",
+    "legalName" : "Q-engineering VOF",
+    "url": "https://qengineering.eu",
+    "email" : "info@qengineering.eu",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://qengineering.eu/Qdeep.jpg",
+      "width": 700,
+      "height": 700
+    },
+    "foundingDate": "1997",
+    "address": {
+       "@type": "PostalAddress",
+       "streetAddress": "Spoorstraat Noord 31",
+       "addressLocality": "Hoogezand",
+       "postalCode": "9601 AX",
+       "addressCountry": "Netherlands"
+    }
+  },
+  "author" : {
+    "@type" : "Person",
+    "name" : "Rients Politiek"
+  },
+  "datePublished" : "2021-04-18T14:45:16Z",
+  "dateModified" : "2021-05-06T13:37:00Z",
+  "keywords" : ["Install OpenCV 4.5 on Jetson Nano"," cuDNN"," CUDA"," jtop"," NVIDIA Jetson overview","Qt5"],
+  "mainEntityOfPage": "https://qengineering.eu/index.html"
+}
+</script>
+
+<style>
+    #imStickyBarContainer {
+
+ overflow:visible !important;
+
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+    
+.button {
+  display: block; /* Make the buttons appear below each other */	
+  background-color: #004010;
+  border: none;
+  color: #A6FFBC;
+  font-family: 'Roboto';
+  font-size: 13px;
+  text-align: left;
+  padding: 2px 0px;  /* 2px 20px */
+  height: 20px;
+  width: 170px; /* previuos 220 (200 + pad 20) previuos 180 */
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '➜';/*'➜';/*'▶';*/
+  position: absolute;
+  opacity: 0;
+  top: -2px;
+  right: -15px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 22px;
+  color: #FFFFFF;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  color: #FFFFFF;
+  right: 0px;
+}
+
+.button3 {
+  display: block; /* Make the buttons appear below each other */	
+  background-color: #004010;
+  border: none;
+  color: #A6FFBC;
+  text-align: left;
+  font-family: 'Roboto';
+  font-size: 13px;
+  text-align: left;
+  height: 34px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: -4px;
+}
+
+.button3:hover {
+  color: #FFFFFF;
+}
+
+.button2 {
+  display: inline-block;
+  background-color: #004010;
+  border: none;
+  color: #A6FFBC;
+  text-align: left;
+  font-family: 'Roboto';
+  font-size: 13px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: -4px;
+}
+
+.button2:hover {
+  color: #FFFFFF;
+}
+
+
+.containerL {
+  position: absolute; 
+  top: 0px;
+  left: 0px;
+  width: 50%; 
+  height: auto;
+}
+
+.containerL .Txt{
+  position: absolute; 
+  top: 0px;
+  left: 63px;
+  height: auto;
+  background-color: #FFFFFF;
+  color: #005E2F;
+  text-align: left;
+  font-family: Lato,sans-serif;
+  font-size: 22px;
+}
+
+.containerL .buttonArLeft {
+  position: absolute;
+  top: 4px;
+  left: 0px;
+  background-color: #FFFFFF;
+  border: none;
+  color: #005E2F;
+  text-align: left;
+  font-size: 24px;
+  height: 30px;
+  padding: 0px 30px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 1px;
+ 
+  -moz-transform:    scaleX(-1); /* Gecko */
+  -o-transform:      scaleX(-1); /* Opera */
+  -webkit-transform: scaleX(-1); /* Webkit */
+  transform:         scaleX(-1); /* Standard */
+
+  filter: FlipH;                 /* IE 6/7/8 */
+  
+}
+
+.containerL .buttonArLeft span {
+  cursor: pointer;
+  position: absolute;
+  top: -8px;
+  transition: 0.5s;
+}
+
+.containerL .buttonArLeft span:after {
+  content: '➜';
+  position: absolute;
+  right: 0px;
+  transition: 0.5s;
+}
+
+.containerL .buttonArLeft:hover span {
+  padding-right: 18px;
+}
+
+.containerR {
+  position: absolute; 
+  top: 0px;
+  right: 0px;
+  width: 50%;
+  height: auto;
+}
+
+.containerR .Txt {
+  position: absolute; 
+  top: 0px;
+  right: 62px;
+  height: auto;
+  background-color: #FFFFFF;
+  color: #005E2F;
+  text-align: right;
+  font-family: Lato,sans-serif;
+  font-size: 22px;
+}
+
+.containerR .buttonAr {
+  position: absolute;
+  top: 4px;
+  right: 0px;
+  background-color: #FFFFFF;
+  border: none;
+  color: #005E2F;
+  text-align: left;
+  font-size: 24px;
+  height: 30px;
+  padding: 0px 30px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 1px;
+}
+
+.containerR .buttonAr span {
+  cursor: pointer;
+  position: absolute;
+  top: -8px;
+  transition: 0.5s;
+}
+
+.containerR .buttonAr span:after {
+  content: '➜';
+  position: absolute;
+  right: 0px;
+  transition: 0.5s;
+}
+
+.containerR .buttonAr:hover span {
+  padding-right: 18px;
+}
+
+/* Style the tab */
+tb_cm {
+  font-size: 14px;
+  color: #4A86E8;
+}
+
+tb_cd {
+  font-size: 16px;
+}
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap; 
+}
+
+.tabs div {
+    display: none;
+    box-sizing: border-box;
+    overflow: hidden;
+    border: 1px solid #808080;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+    padding: 1em 1em;
+	font-family: "DejaVu Sans Mono";
+	text-align: left;
+  	line-height: 150%;  
+  	background-color:  #FFFFDF;
+}
+
+.tabs label {
+    z-index: 1; 
+    display: block;
+    padding: 5px 15px;
+    text-align: center;
+    color: #065E2F;
+    font-size: 17px;
+    font-weight: bold;
+    font-family: "Roboto";
+    cursor: pointer;
+    border-radius: 5px 5px 0px 0px;
+    border: 1px solid #808080;
+    margin-bottom: -1px;
+	background: white;
+    transition: background ease 0.2s;
+}
+
+.tabs label:hover {
+  background-color: #ddd;
+}
+
+.tabs [class^="tab"] {
+    order: 99; 
+    flex-grow: 1;
+    width: 100%;
+    display: none;
+    padding: 1rem;
+}
+
+.tabs input[type="radio"] {
+    display: none;
+}
+
+.tabs input[type="radio"]:checked + label {
+    background: #ffff8f;
+    border-bottom: none;
+}
+
+.tabs input[type="radio"]:checked + label + [class^="tab"] {
+	display: block;
+}
+
+</style>
+
+	</head>
+	<body>
+		<div id="imPageExtContainer">
+			<div id="imPageIntContainer">
+				<div id="imHeaderBg"></div>
+				<div id="imFooterBg"></div>
+				<div id="imPage">
+					<header id="imHeader">
+						<h5 class="imHidden">Install OpenCV 4.5 on Jetson Nano - Q-engineering</h5>
+						<div id="imHeaderObjects"><div id="imHeader_imMenuObject_01_wrapper" class="template-object-wrapper"><!-- UNSEARCHABLE --><div id="imHeader_imMenuObject_01"><div id="imHeader_imMenuObject_01_container"><div class="hamburger-button hamburger-component"><div><div><div class="hamburger-bar"></div><div class="hamburger-bar"></div><div class="hamburger-bar"></div></div></div></div><div class="hamburger-menu-background-container hamburger-component">
+	<div class="hamburger-menu-background menu-mobile menu-mobile-animated hidden">
+		<div class="hamburger-menu-close-button"><span>×</span></div>
+	</div>
+</div>
+<ul class="menu-mobile-animated hidden">
+	<li class="imMnMnFirst imPage" data-link-paths=",/index.html,/">
+<div class="label-wrapper">
+<div class="label-inner-wrapper">
+		<a class="label" href="https://qengineering.eu/index.html">
+Machine learning		</a>
+</div>
+</div>
+	</li><li class="imMnMnMiddle imPage" data-link-paths=",/computer-vision.html">
+<div class="label-wrapper">
+<div class="label-inner-wrapper">
+		<a class="label" href="https://qengineering.eu/computer-vision.html">
+Computer vision		</a>
+</div>
+</div>
+	</li><li class="imMnMnMiddle imPage" data-link-paths=",/embedded-vision.html">
+<div class="label-wrapper">
+<div class="label-inner-wrapper">
+		<a class="label" href="https://qengineering.eu/embedded-vision.html">
+Embedded vision		</a>
+</div>
+</div>
+	</li><li class="imMnMnMiddle imPage" data-link-paths=",/deep-learning.html">
+<div class="label-wrapper">
+<div class="label-inner-wrapper">
+		<a class="label" href="https://qengineering.eu/deep-learning.html">
+Deep learning		</a>
+</div>
+</div>
+	</li><li class="imMnMnMiddle imPage" data-link-paths=",/math.html">
+<div class="label-wrapper">
+<div class="label-inner-wrapper">
+		<a class="label" href="https://qengineering.eu/math.html">
+Math		</a>
+</div>
+</div>
+	</li><li class="imMnMnMiddle imPage" data-link-paths=",/optics.html">
+<div class="label-wrapper">
+<div class="label-inner-wrapper">
+		<a class="label" href="https://qengineering.eu/optics.html">
+Optics		</a>
+</div>
+</div>
+	</li><li class="imMnMnMiddle imPage" data-link-paths=",/shop.html">
+<div class="label-wrapper">
+<div class="label-inner-wrapper">
+		<a class="label" href="https://qengineering.eu/shop.html">
+Shop		</a>
+</div>
+</div>
+	</li><li class="imMnMnLast imPage" data-link-paths=",/contact.html">
+<div class="label-wrapper">
+<div class="label-inner-wrapper">
+		<a class="label" href="https://qengineering.eu/contact.html">
+Contact		</a>
+</div>
+</div>
+	</li></ul></div></div><!-- UNSEARCHABLE END --><script>
+var imHeader_imMenuObject_01_settings = {
+	'menuId': 'imHeader_imMenuObject_01',
+	'responsiveMenuEffect': 'slide',
+	'animationDuration': 1000,
+}
+x5engine.boot.push(function(){x5engine.initMenu(imHeader_imMenuObject_01_settings)});
+$(function () {$('#imHeader_imMenuObject_01_container ul li').not('.imMnMnSeparator').each(function () {    var $this = $(this), timeout = 0, subtimeout = 0, width = 'none', height = 'none';        var submenu = $this.children('ul').add($this.find('.multiple-column > ul'));    $this.on('mouseenter', function () {        if($(this).parents('#imHeader_imMenuObject_01_container-menu-opened').length > 0) return;         clearTimeout(timeout);        clearTimeout(subtimeout);        $this.children('.multiple-column').show(0);        submenu.stop(false, false);        if (width == 'none') {             width = submenu.width();        }        if (height == 'none') {            height = submenu.height();            submenu.css({ overflow : 'hidden', height: 0});        }        setTimeout(function () {         submenu.css({ overflow : 'hidden'}).fadeIn(1).animate({ height: height }, 300, null, function() {$(this).css('overflow', 'visible'); });        }, 250);    }).on('mouseleave', function () {        if($(this).parents('#imHeader_imMenuObject_01_container-menu-opened').length > 0) return;         timeout = setTimeout(function () {         submenu.stop(false, false);            submenu.css('overflow', 'hidden').animate({ height: 0 }, 300, null, function() {$(this).fadeOut(0); });            subtimeout = setTimeout(function () { $this.children('.multiple-column').hide(0); }, 300);        }, 250);    });});});
+$(function () {$('#imHeader_imMenuObject_01_container > ul > li').not('.imMnMnSeparator').each(function () {    var $this = $(this), timeout = 0;    $this.on('mouseenter', function () {        clearTimeout(timeout);        var overElem = $this.children('.label-wrapper-over');        if(overElem.length == 0)            overElem = $this.children('.label-wrapper').clone().addClass('label-wrapper-over').appendTo($this);        setTimeout(function(){overElem.addClass('animated');}, 10);    }).on('mouseleave', function () {        var overElem = $this.children('.label-wrapper-over');        overElem.removeClass('animated');        timeout = setTimeout(function(){overElem.remove();}, 500);    });});});
+</script>
+</div><div id="imHeader_imObjectTitle_02_wrapper" class="template-object-wrapper"><div id="imHeader_imObjectTitle_02"><span id="imHeader_imObjectTitle_02_text">Q-engineering</span></div></div></div>
+					</header>
+					<div id="imStickyBarContainer" style="left: 0px; margin-top: 0px; bottom: auto; z-index: 10302; transform: translateZ(0px); top: 0px; visibility: visible; overflow: visible;">
+						<div id="imStickyBarGraphics"></div>
+						<div id="imStickyBar">
+							<div id="imStickyBarObjects"><div id="imStickyBar_imObjectTitle_02_wrapper" class="template-object-wrapper"><h5 id="imStickyBar_imObjectTitle_02"><span id="imStickyBar_imObjectTitle_02_text">Q-engineering</span></h5></div><div id="imStickyBar_imMenuObject_03_wrapper" class="template-object-wrapper"><!-- UNSEARCHABLE --><div id="imStickyBar_imMenuObject_03"><div id="imStickyBar_imMenuObject_03_container"><div class="hamburger-button hamburger-component"><div><div><div class="hamburger-bar"></div><div class="hamburger-bar"></div><div class="hamburger-bar"></div></div></div></div><div class="hamburger-menu-background-container hamburger-component">
+	<div class="hamburger-menu-background menu-mobile menu-mobile-animated hidden">
+		<div class="hamburger-menu-close-button"><span>×</span></div>
+	</div>
+</div>
+<ul class="menu-mobile-animated hidden">
+	<li class="imMnMnFirst imPage" data-link-paths=",/index.html,/">
+<div class="label-wrapper">
+<div class="label-inner-wrapper">
+		<a class="label" href="https://qengineering.eu/index.html">
+Machine learning		</a>
+</div>
+</div>
+	<div class="label-wrapper label-wrapper-over animated">
+<div class="label-inner-wrapper">
+		<a class="label" href="https://qengineering.eu/index.html">
+Machine learning		</a>
+</div>
+</div></li><li class="imMnMnMiddle imPage" data-link-paths=",/computer-vision.html">
+<div class="label-wrapper">
+<div class="label-inner-wrapper">
+		<a class="label" href="https://qengineering.eu/computer-vision.html">
+Computer vision		</a>
+</div>
+</div>
+	</li><li class="imMnMnMiddle imPage" data-link-paths=",/embedded-vision.html">
+<div class="label-wrapper">
+<div class="label-inner-wrapper">
+		<a class="label" href="https://qengineering.eu/embedded-vision.html">
+Embedded vision		</a>
+</div>
+</div>
+	</li><li class="imMnMnMiddle imPage" data-link-paths=",/deep-learning.html">
+<div class="label-wrapper">
+<div class="label-inner-wrapper">
+		<a class="label" href="https://qengineering.eu/deep-learning.html">
+Deep learning		</a>
+</div>
+</div>
+	</li><li class="imMnMnMiddle imPage" data-link-paths=",/math.html">
+<div class="label-wrapper">
+<div class="label-inner-wrapper">
+		<a class="label" href="https://qengineering.eu/math.html">
+Math		</a>
+</div>
+</div>
+	</li><li class="imMnMnMiddle imPage" data-link-paths=",/optics.html">
+<div class="label-wrapper">
+<div class="label-inner-wrapper">
+		<a class="label" href="https://qengineering.eu/optics.html">
+Optics		</a>
+</div>
+</div>
+	</li><li class="imMnMnMiddle imPage" data-link-paths=",/shop.html">
+<div class="label-wrapper">
+<div class="label-inner-wrapper">
+		<a class="label" href="https://qengineering.eu/shop.html">
+Shop		</a>
+</div>
+</div>
+	</li><li class="imMnMnLast imPage" data-link-paths=",/contact.html">
+<div class="label-wrapper">
+<div class="label-inner-wrapper">
+		<a class="label" href="https://qengineering.eu/contact.html">
+Contact		</a>
+</div>
+</div>
+	</li></ul></div></div><!-- UNSEARCHABLE END --><script>
+var imStickyBar_imMenuObject_03_settings = {
+	'menuId': 'imStickyBar_imMenuObject_03',
+	'responsiveMenuEffect': 'slide',
+	'animationDuration': 1000,
+}
+x5engine.boot.push(function(){x5engine.initMenu(imStickyBar_imMenuObject_03_settings)});
+$(function () {$('#imStickyBar_imMenuObject_03_container ul li').not('.imMnMnSeparator').each(function () {    var $this = $(this), timeout = 0, subtimeout = 0, width = 'none', height = 'none';        var submenu = $this.children('ul').add($this.find('.multiple-column > ul'));    $this.on('mouseenter', function () {        if($(this).parents('#imStickyBar_imMenuObject_03_container-menu-opened').length > 0) return;         clearTimeout(timeout);        clearTimeout(subtimeout);        $this.children('.multiple-column').show(0);        submenu.stop(false, false);        if (width == 'none') {             width = submenu.width();        }        if (height == 'none') {            height = submenu.height();            submenu.css({ overflow : 'hidden', height: 0});        }        setTimeout(function () {         submenu.css({ overflow : 'hidden'}).fadeIn(1).animate({ height: height }, 300, null, function() {$(this).css('overflow', 'visible'); });        }, 250);    }).on('mouseleave', function () {        if($(this).parents('#imStickyBar_imMenuObject_03_container-menu-opened').length > 0) return;         timeout = setTimeout(function () {         submenu.stop(false, false);            submenu.css('overflow', 'hidden').animate({ height: 0 }, 300, null, function() {$(this).fadeOut(0); });            subtimeout = setTimeout(function () { $this.children('.multiple-column').hide(0); }, 300);        }, 250);    });});});
+$(function () {$('#imStickyBar_imMenuObject_03_container > ul > li').not('.imMnMnSeparator').each(function () {    var $this = $(this), timeout = 0;    $this.on('mouseenter', function () {        clearTimeout(timeout);        var overElem = $this.children('.label-wrapper-over');        if(overElem.length == 0)            overElem = $this.children('.label-wrapper').clone().addClass('label-wrapper-over').appendTo($this);        setTimeout(function(){overElem.addClass('animated');}, 10);    }).on('mouseleave', function () {        var overElem = $this.children('.label-wrapper-over');        overElem.removeClass('animated');        timeout = setTimeout(function(){overElem.remove();}, 500);    });});});
+</script>
+</div></div>
+						</div>
+					</div>
+					<a class="imHidden" href="https://qengineering.eu/install-opencv-4.5-on-jetson-nano.html#imGoToCont" title="Skip the main menu">Go to content</a>
+					<div id="imSideBar">
+						<div id="imSideBarObjects"><div id="imSideBar_imObjectImage_01_wrapper" class="template-object-wrapper"><div id="imSideBar_imObjectImage_01"><div id="imSideBar_imObjectImage_01_container"><img src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/empty-GT_imagea-1-.png" data-src="images/empty-GT_imagea-1-.png" title="" alt="images/empty-GT_imagea-1-.png">
+</div></div></div></div>
+					</div>
+					<div id="imContentGraphics"></div>
+					<main id="imContent">
+						<a id="imGoToCont"></a>
+						<div id="imPageRow_1" class="imPageRow">
+						
+						</div>
+						<div id="imCell_1" class="" data-responsive-sequence-number="1"> <div id="imCellStyleGraphics_1"></div><div id="imCellStyleBorders_1"></div><div id="imObjectImage_68_01"><div id="imObjectImage_68_01_container"><img src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/LogoOpenJetson.webp" data-src="images/LogoOpenJetson.webp" title="OpenCV on Jetson Nano" alt="OpenCV on Jetson Nano">
+						</div></div></div><div id="imPageRow_2" class="imPageRow">
+						
+						</div>
+						<div id="imCell_2" class="" data-responsive-sequence-number="2"> <div id="imCellStyleGraphics_2"></div><div id="imCellStyleBorders_2"></div><div id="imTextObject_68_02">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_02_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div class="imHeading2"><h1>Install OpenCV 4.5 on Jetson Nano</h1></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_3" class="imPageRow">
+						
+						</div>
+						<div id="imCell_18" class="" data-responsive-sequence-number="3"> <div id="imCellStyleGraphics_18"></div><div id="imCellStyleBorders_18"></div><div id="imTextObject_68_18">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_18_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div class="imHeading3"><h3>Introduction.</h3></div><div><div><span class="fs12lh1-5">Why would you install OpenCV on the Jetson Nano, when your operating system has already a version pre-installed? The main reason is </span><span class="fs12lh1-5">that the shipped version has no CUDA support. And after all, wasn't the CUDA accelerator the main reason you bought the Jetson Nano in the first place?</span></div></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_4" class="imPageRow">
+						
+						</div>
+						<div id="imCell_398" class="" data-responsive-sequence-number="4"> <div id="imCellStyleGraphics_398"></div><div id="imCellStyleBorders_398"></div><div id="imTextObject_68_398">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_398_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div class="imHeading5"><h5>OpenCV 4.5.1.</h5></div><div><div>On December 22, 2020, OpenCV released version <b>4.5.1</b>. <span class="fs12lh1-5">The most important improvement</span><span class="fs12lh1-5"> in </span><span class="fs12lh1-5"><a href="https://github.com/opencv/opencv/wiki/ChangeLog#version451" target="_blank" class="imCssLink">this version</a></span><span class="fs12lh1-5"> is the work on the G-API framework and the RISC-V port. Neither will affect the Jetson Nano. </span><br></div></div><div><div class="imHeading5">OpenCV 4.5.2.</div><div><span class="fs12lh1-5">On April 2, 2021, OpenCV released version</span><span class="fs12lh1-5"> </span><b><span class="fs12lh1-5">4.5.2</span></b><span class="fs12lh1-5">. Find the significant changes in version in </span><span class="fs12lh1-5"><a href="https://github.com/opencv/opencv/wiki/ChangeLog#version452" target="_blank" class="imCssLink">the log file here.</a> </span><span class="fs12lh1-5">Important changes are made in the imgproc, videoio and DNN module.</span></div></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_5" class="imPageRow">
+						
+						</div>
+						<div id="imCell_361" class="" data-responsive-sequence-number="5"> <div id="imCellStyleGraphics_361"></div><div id="imCellStyleBorders_361"></div><div id="imTextObject_68_361">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_361_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div class="imHeading5"><h5>Tips.</h5></div><div><div><div>It may be advisable to install the lightdm desktop instead of the gdm3 when prompted during the initial installation, saving about 500 MByte of precious memory space. It can make all the difference, especially with memory-hungry deep learning models. Although some of you probably prefer the <span class="fs12lh1-5"><i>Ubuntu</i></span> look and feel to the somewhat archaic <span class="fs12lh1-5"><i>lxdm </i></span>experience.</div></div></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_6" class="imPageRow">
+						
+						</div>
+						<div id="imCell_359" class="" data-responsive-sequence-number="6"> <div id="imCellStyleGraphics_359"></div><div id="imCellStyleBorders_359"></div><div id="imObjectImage_68_359"><div id="imObjectImage_68_359_container"><img src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/lightdm.webp" data-src="images/lightdm.webp" title="lightdm desktop" alt="lightdm desktop">
+						</div></div></div><div id="imCell_358" class="" data-responsive-sequence-number="7"> <div id="imCellStyleGraphics_358"></div><div id="imCellStyleBorders_358"></div><div id="imObjectImage_68_358"><div id="imObjectImage_68_358_container"><img src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/gdm3.webp" data-src="images/gdm3.webp" title="gdm2 desktop" alt="gdm2 desktop">
+						</div></div></div><div id="imPageRow_7" class="imPageRow">
+						
+						</div>
+						<div id="imCell_357" class="" data-responsive-sequence-number="8"> <div id="imCellStyleGraphics_357"></div><div id="imCellStyleBorders_357"></div><div id="imTextObject_68_357">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_357_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div>Before installing OpenCV 4.5.0 on your Jetson Nano, consider overclocking. When the CUDA accelerator is not used, which is in most daily applications, the Jetson Nano has a quad ARM Cortex-A57 core running at 1.4 GHz. Compared to the quad Cortex-A72 at 1.5 GHz of the Raspberry Pi 4, there isn't that great a difference. Especially with an overclocked RPi. In that case, it will beat the Jetson in most tasks. Except, of course, when the CUDA kicks in. On this <span style="font-weight: normal;" class="fs12lh1-5"><a href="https://qengineering.eu/overclocking-the-jetson-nano.html" class="imCssLink" onclick="return x5engine.utils.location(&#39;overclocking-the-jetson-nano.html&#39;, null, false)">page</a></span><span style="font-weight: normal;" class="fs12lh1-5 cf1"> the overclocking of the Jetson Nano is covered.</span></div><div><br></div><div><div><span class="fs12lh1-5">So, time to reinstall OpenCV on the Jetson Nano with the CUDA and cuDNN support this time.</span></div></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_8" class="imPageRow">
+						
+						</div>
+						<div id="imCell_336" class="" data-responsive-sequence-number="9"> <div id="imCellStyleGraphics_336"></div><div id="imCellStyleBorders_336"></div><div id="imCellStyleTitle_336">Original</div><div id="imTextObject_68_336">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_336_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div data-line-height="1" class="lh1 imTALeft"><span class="fs8lh1 ff1">General configuration for OpenCV 4.1.1 =====================================</span><br></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;Version control: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.1.1-2-gd5a58aa75</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;Platform:</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;Timestamp: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2019-12-13T17:25:11Z</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;Host: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux 4.9.140-tegra aarch64</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1">**********</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> OpenCV modules:</span><br></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;To be built: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;calib3d core dnn features2d flann gapi highgui imgcodecs imgproc ml objdetect photo python2 python3 stitching ts video videoio</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><br></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1">**********</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> Video I/O:</span><br></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;FFMPEG: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;avcodec: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES (57.107.100)</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;avformat: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES (57.83.100)</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;avutil: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES (55.78.100)</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;swscale: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES (4.8.100)</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;avresample: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;GStreamer: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES (1.14.5)</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;v4l/v4l2: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES (linux/videodev2.h)</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1">**********</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><br></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> Install to: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/usr</span></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imCell_337" class="" data-responsive-sequence-number="10"> <div id="imCellStyleGraphics_337"></div><div id="imCellStyleBorders_337"></div><div id="imCellStyleTitle_337">Reinstalled</div><div id="imTextObject_68_337">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_337_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div data-line-height="1" class="lh1"><div class="imTALeft"><span class="fs8lh1 ff1">General configuration for OpenCV 4.5.0 =====================================</span><br></div></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;Version control: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unknown</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;Extra modules:</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;Location (extra): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/home/jetson/opencv_contrib/modules</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;Version control (extra): &nbsp;&nbsp;&nbsp;&nbsp;unknown</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;Platform:</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;Timestamp: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2020-10-14T10:57:53Z</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;Host: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux 4.9.140-tegra aarch64</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1">**********</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> OpenCV modules:</span><br></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;To be built: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alphamat aruco bgsegm bioinspired calib3d ccalib core cudaarithm cudabgsegm cudacodec cudafeatures2d cudafilters cudaimgproc cudalegacy cudaobjdetect cudaoptflow cudastereo cudawarping cudev datasets dnn dnn_objdetect dnn_superres dpm face features2d flann freetype fuzzy gapi hdf hfs highgui img_hash imgcodecs imgproc intensity_transform line_descriptor ml objdetect optflow phase_unwrapping photo plot python2 python3 quality rapid reg rgbd saliency sfm shape stereo stitching structured_light superres surface_matching text tracking ts video videoio videostab xfeatures2d ximgproc xobjdetect xphoto</span></div><div data-line-height="1" class="lh1"><br></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1">**********</span></div><div data-line-height="1" class="lh1"><br></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> Video I/O:</span><br></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;DC1394: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES (2.2.5)</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;FFMPEG: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;avcodec: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES (57.107.100)</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;avformat: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES (57.83.100)</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;avutil: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES (55.78.100)</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;swscale: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES (4.8.100)</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;avresample: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES (3.7.0)</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;GStreamer: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES (1.14.5)</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;v4l/v4l2: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES (linux/videodev2.h)</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1">**********</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;NVIDIA CUDA: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES (ver 10.2, CUFFT CUBLAS FAST_MATH)</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;NVIDIA GPU arch: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;53</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;&nbsp;&nbsp;NVIDIA PTX archs:</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"> &nbsp;cuDNN: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES (ver 8.0.0)</span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1"><br></span></div><div data-line-height="1" class="lh1"><span class="fs8lh1 ff1">Install to: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/usr</span><br></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_9" class="imPageRow">
+						
+						</div>
+						<div id="imCell_329" class="" data-responsive-sequence-number="11"> <div id="imCellStyleGraphics_329"></div><div id="imCellStyleBorders_329"></div><div id="imTextObject_68_329">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_329_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div><div class="imHeading3"><h3></h3><b class="fs12lh1-5 cf2"><span class="fs15lh1-5 cf1">Enlarge memory swap.</span></b></div><div class="imTALeft">Building the full OpenCV 4.5.0 package requires more than 4 Gbytes of RAM on your Jetson Nano and the extra 2 Gbytes of swap space delivered by <span class="fs12lh1-5 ff1">zram</span>. We have to install <span class="fs12lh1-5 ff1">dphys-swapfile</span> to get the additional space from your SD card <span class="fs12lh1-5">temporarily</span><span class="fs12lh1-5">. After the compilation, the mechanism will be removed, eliminating swapping to the SD card. Please follow the next commands. Note also the installation of nano, a tiny text editor.</span><br></div></div><style type="text/css"> 	<!-- 		@page { margin: 2cm } 		P { margin-bottom: 0.21cm } 	--> 	</style>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_10" class="imPageRow">
+						
+						</div>
+						<div id="imCell_331" class="" data-responsive-sequence-number="12"> <div id="imCellStyleGraphics_331"></div><div id="imCellStyleBorders_331"></div><div id="imHTMLObject_68_331" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="250" height="20"></object>
+						</div></div><div id="imCell_330" class="" data-responsive-sequence-number="13"> <div id="imCellStyleGraphics_330"></div><div id="imCellStyleBorders_330"></div><div id="imTextObject_68_330">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_330_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div><div><span class="fs11lh1-5 cf1 ff1"># a fresh start, so check for updates</span></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get update</span></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get upgrade</span></div><div><span class="fs11lh1-5 cf2 ff1"># install nano</span><br></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get install nano</span></div><div><span class="fs11lh1-5 cf2 ff1"># install dphys-swapfile</span><br></div></div><div><div><span class="fs12lh1-5 ff1">$ sudo apt-get install dphys-swapfile</span></div><div><span class="fs11lh1-5 cf2 ff1"># give the required memory size</span></div><div><span class="fs12lh1-5 ff1">$ sudo nano /etc/dphys-swapfile</span></div></div><div><div><span class="fs11lh1-5 cf2 ff1"># reboot afterwards</span></div><div><span class="fs12lh1-5 ff1">$ sudo reboot.</span></div></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imCell_332" class="" data-responsive-sequence-number="14"> <div id="imCellStyleGraphics_332"></div><div id="imCellStyleBorders_332"></div><div id="imHTMLObject_68_332" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="250" height="20"></object>
+						</div></div><div id="imPageRow_11" class="imPageRow">
+						
+						</div>
+						<div id="imCell_333" class="" data-responsive-sequence-number="15"> <div id="imCellStyleGraphics_333"></div><div id="imCellStyleBorders_333"></div><div id="imObjectGallery_68_333"><div style="position: relative; background-color: transparent; margin: 0px auto; width: 1096.44px; height: 616.746px;"><div style="overflow: hidden; position: absolute; inset: 0px; margin: 0px auto; width: 1096.44px; height: 616.746px;"><img src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/swap1jetson.webp" data-width="734" data-height="462" style="position: absolute; left: 181.219px; top: 77.373px; width: 734px; height: 462px; transform-origin: 50% 50%; transform: none; user-select: none;" unselectable="on"><div style="width: 66px; height: 22px; position: absolute; inset: auto auto 5px 515.219px;"><div data-num="0" style="display: inline-block; background-image: url(&quot;gallery/bullets.png&quot;); background-repeat: no-repeat; cursor: pointer; background-position: -22px 0px; width: 22px; height: 22px;"></div><div data-num="1" style="display: inline-block; background-image: url(&quot;gallery/bullets.png&quot;); background-repeat: no-repeat; cursor: pointer; background-position: 0px 0px; width: 22px; height: 22px;"></div><div data-num="2" style="display: inline-block; background-image: url(&quot;gallery/bullets.png&quot;); background-repeat: no-repeat; cursor: pointer; background-position: 0px 0px; width: 22px; height: 22px;"></div></div></div><div></div><img src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/b17_l.png" alt="Previous" style="display: block; position: absolute; top: 295.873px; left: 4px; cursor: pointer;"><img src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/b17_r.png" alt="Next" style="display: block; position: absolute; top: 295.873px; right: 4px; cursor: pointer;"></div></div>
+<script>
+var imObjectGallery_68_333_settings = {'target': '#imObjectGallery_68_333','backgroundColor': 'transparent','description': { 'fontSize': '9pt','fontFamily': 'Roboto','fontStyle': 'normal','fontWeight': 'normal'},'autoplay': false,'thumbs': { 'position': 'none', 'number': 4 },'controlBar': { 'show': false, 'color': 'rgba(20, 20, 20, 1)' },'random': false,'fullScreen': true,'slideshow': { 'active': true, buttonPrev: { url: 'gallery/b17_l.png', x: 4, y: 0, width: 24, height: 25 }, buttonNext: { url: 'gallery/b17_r.png', x: 4, y: 0, width: 24, height: 25 }, nextPrevMode: 'visible'},'bullets': {'show': true,'url': 'gallery/bullets.png','size': 22,'distanceTop': 5,'distanceBottom': 5,'distanceLeft': 5,'distanceRight': 5,'positionY': 'bottom','positionX': 'center'},'media': [{'type': 'image','width': 734,'height': 462,'url': 'gallery/swap1jetson.webp','hiresUrl': 'gallery/swap1jetson_big.webp','hiresWidth': 734,'hiresHeight': 462,'autoplayTime': 5000,'effect': 'none'},{'type': 'image','width': 734,'height': 462,'url': 'gallery/swap2jetson.webp','hiresUrl': 'gallery/swap2jetson_big.webp','hiresWidth': 734,'hiresHeight': 462,'autoplayTime': 5000,'effect': 'none'},{'type': 'image','width': 734,'height': 462,'url': 'gallery/swap3jetson.webp','hiresUrl': 'gallery/swap3jetson_big.webp','hiresWidth': 734,'hiresHeight': 462,'autoplayTime': 5000,'effect': 'none'}]};var dataimObjectGallery_68_333 = null;
+function loadimObjectGallery_68_333() {
+var startIndex = 0;
+if(!!dataimObjectGallery_68_333) {
+imObjectGallery_68_333_settings.startFrom = dataimObjectGallery_68_333.currentItemIndex();
+}
+var w = 0;
+var h = 0;
+w = $('#imObjectGallery_68_333').width();
+
+w = w + (0);
+var wImageMax = 734;
+wImageMax = wImageMax + (0);
+w  = Math.min(w, 1097);
+h = w * 1440 / 2560;
+imObjectGallery_68_333_settings.width = w;
+imObjectGallery_68_333_settings.height = h;
+dataimObjectGallery_68_333 = x5engine.gallery(imObjectGallery_68_333_settings);
+}
+x5engine.boot.push(function() {
+var imObjectGallery_68_333_resizeTo = null,
+imObjectGallery_68_333_width = 0,
+isFirstTime = true;
+loadimObjectGallery_68_333();
+x5engine.utils.onElementResize(document.getElementById('imObjectGallery_68_333').parentNode, function (rect, target) {
+if (imObjectGallery_68_333_width == rect.width) {
+return;
+}
+imObjectGallery_68_333_width = rect.width;
+if (!!imObjectGallery_68_333_resizeTo) {
+clearTimeout(imObjectGallery_68_333_resizeTo);
+}
+imObjectGallery_68_333_resizeTo = setTimeout(function() {
+if(!isFirstTime) {
+loadimObjectGallery_68_333();
+}
+else {
+isFirstTime = false;
+}
+}, 50);
+});
+});
+</script></div><div id="imPageRow_12" class="imPageRow">
+						
+						</div>
+						<div id="imCell_40" class="" data-responsive-sequence-number="16"> <div id="imCellStyleGraphics_40"></div><div id="imCellStyleBorders_40"></div><div id="imTextObject_68_40">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_40_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div class="imTACenter"><img class="image-0" src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/Free-m.webp" data-src="images/Free-m.webp" title="Swap space " alt="Swap space "><br></div><div><br></div><div class="imHeading3"><h3>Dependencies.</h3></div><div><div>The OpenCV software uses other third party software libraries. Install these first. Some come with the Jetson Tegra operating system, others you may already have installed. Better to be safe than sorry, so here's the full list. Only the latest packages are installed according to the procedure. </div><div><div>The installation will take up an additional 800 MByte on your disk, if not already present.</div></div></div> 	 	 	<style type="text/css"> 	<!-- 		@page { margin: 2cm } 		P { margin-bottom: 0.21cm } 	--> 	</style>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_13" class="imPageRow">
+						
+						</div>
+						<div id="imCell_43" class="" data-responsive-sequence-number="17"> <div id="imCellStyleGraphics_43"></div><div id="imCellStyleBorders_43"></div><div id="imHTMLObject_68_43" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="50" height="20"></object>
+						</div></div><div id="imCell_41" class="" data-responsive-sequence-number="18"> <div id="imCellStyleGraphics_41"></div><div id="imCellStyleBorders_41"></div><div id="imTextObject_68_41">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_41_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div data-line-height="1.5"><span class="fs11lh1-5 cf1 ff1"># reveal the CUDA location</span><br></div><div data-line-height="1.5"><span class="fs12lh1-5 cf2 ff1">$ sudo sh -c "echo '/usr/local/cuda/lib64' &gt;&gt; /etc/ld.so.conf.d/nvidia-tegra.conf"</span></div><div><span class="fs12lh1-5 cf2 ff1">$ sudo ldconfig</span></div><div><span class="fs11lh1-5 cf1 ff1"># third-party libraries</span><br></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get install build-essential cmake git unzip pkg-config<br></span></div><div><div><span class="fs12lh1-5 ff1">$ sudo apt-get install libjpeg-dev libpng-dev libtiff-dev</span></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev</span></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get install libgtk2.0-dev libcanberra-gtk*</span></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get install python3-dev python3-numpy python3-pip</span></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get install libxvidcore-dev libx264-dev libgtk-3-dev</span></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get install libtbb2 libtbb-dev libdc1394-22-dev</span></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get install libv4l-dev v4l-utils</span></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev</span></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get install libavresample-dev libvorbis-dev libxine2-dev</span></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get install libfaac-dev libmp3lame-dev libtheora-dev</span></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get install libopencore-amrnb-dev libopencore-amrwb-dev</span></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get install libopenblas-dev libatlas-base-dev libblas-dev</span></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get install liblapack-dev libeigen3-dev gfortran</span></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get install libhdf5-dev protobuf-compiler</span></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get install libprotobuf-dev libgoogle-glog-dev libgflags-dev</span></div></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imCell_42" class="" data-responsive-sequence-number="19"> <div id="imCellStyleGraphics_42"></div><div id="imCellStyleBorders_42"></div><div id="imHTMLObject_68_42" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="50" height="20"></object>
+						</div></div><div id="imPageRow_14" class="imPageRow">
+						
+						</div>
+						<div id="imCell_339" class="" data-responsive-sequence-number="20"> <div id="imCellStyleGraphics_339"></div><div id="imCellStyleBorders_339"></div><div id="imTextObject_68_339">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_339_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div class="imHeading3"><h3>Qt5.</h3></div><div><div>Qt is an open-source toolkit for the development of cross-platform graphical user interfaces. It also works on the Linux Tegra operating system. The software can be used to beautify OpenCV windows and other user interfaces, such as sliders and checkboxes. <span class="fs12lh1-5">It is absolutely not mandatory for the working of OpenCV, only to </span><span class="fs12lh1-5">embellish the look. </span><span class="fs12lh1-5">M</span><span class="fs12lh1-5">ust be said, that using Qt5 will slow down your OpenCV by a few percent. If you go for the fastest possible apps, don't use it.</span></div></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_15" class="imPageRow">
+						
+						</div>
+						<div id="imCell_340" class="" data-responsive-sequence-number="21"> <div id="imCellStyleGraphics_340"></div><div id="imCellStyleBorders_340"></div><div id="imObjectImage_68_340"><div id="imObjectImage_68_340_container"><img src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/openCV-window.webp" data-src="images/openCV-window.webp" title="No Qt5" alt="No Qt5">
+						</div></div></div><div id="imCell_341" class="" data-responsive-sequence-number="22"> <div id="imCellStyleGraphics_341"></div><div id="imCellStyleBorders_341"></div><div id="imObjectImage_68_341"><div id="imObjectImage_68_341_container"><img src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/openCV-Qt5-window.webp" data-src="images/openCV-Qt5-window.webp" title="With Qt5" alt="With Qt5">
+						</div></div></div><div id="imPageRow_16" class="imPageRow">
+						
+						</div>
+						<div id="imCell_342" class="" data-responsive-sequence-number="23"> <div id="imCellStyleGraphics_342"></div><div id="imCellStyleBorders_342"></div><div id="imTextObject_68_342">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_342_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div><span class="fs12lh1-5">If you want the Qt5 support enabled in OpenCV, you have to download the library as shown in the command below. </span><span class="fs12lh1-5">The next step is to set the </span><span class="fs11lh1-5 ff1">-D WITH_QT</span><span class="fs12lh1-5"> flag during the build.</span></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_17" class="imPageRow">
+						
+						</div>
+						<div id="imCell_344" class="" data-responsive-sequence-number="24"> <div id="imCellStyleGraphics_344"></div><div id="imCellStyleBorders_344"></div><div id="imHTMLObject_68_344" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="250" height="20"></object>
+						</div></div><div id="imCell_345" class="" data-responsive-sequence-number="25"> <div id="imCellStyleGraphics_345"></div><div id="imCellStyleBorders_345"></div><div id="imHTMLObject_68_345" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="250" height="20"></object>
+						</div></div><div id="imCell_343" class="" data-responsive-sequence-number="26"> <div id="imCellStyleGraphics_343"></div><div id="imCellStyleBorders_343"></div><div id="imTextObject_68_343">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_343_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div><span class="fs11lh1-5 cf1 ff1"># only install if you want Qt5 </span></div><div><span class="fs11lh1-5 cf1 ff1"># t</span><span class="fs11lh1-5 cf1 ff1">o beautify your OpenCV GUI</span></div><div><span class="fs12lh1-5 ff1">$ </span><span class="fs12lh1-5 ff1">sudo apt-get install qt5-default</span></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_18" class="imPageRow">
+						
+						</div>
+						<div id="imCell_56" class="" data-responsive-sequence-number="27"> <div id="imCellStyleGraphics_56"></div><div id="imCellStyleBorders_56"></div><div id="imTextObject_68_56">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_56_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div class="imHeading3"><h3>Download OpenCV.</h3></div><div><div>When all third-party software is installed, OpenCV itself can be downloaded. There are two packages needed; the basic version and the additional contributions. After downloading, you can unzip the files. Please be aware of line wrapping in the text boxes. The two commands are starting with <span class="fs11lh1-5 ff1">wget</span> and ending with <span class="fs11lh1-5 ff1">zip</span>.</div></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_19" class="imPageRow">
+						
+						</div>
+						<div id="imCell_395" class="" data-responsive-sequence-number="28"> <div id="imCellStyleGraphics_395"></div><div id="imCellStyleBorders_395"></div><div id="imHTMLObject_68_395" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;">
+						
+						<div class="tabs">
+						    <input type="radio" name="tab2" id="tabthree" checked="checked">
+						    <label for="tabthree">OpenCV 4.5.2</label>
+						    <div class="tab2">
+						      <tb_cm># download the latest version<br></tb_cm>
+						      <tb_cd>$ cd ~ <br></tb_cd> 
+						      <tb_cd>$ wget -O opencv.zip https://github.com/opencv/opencv/archive/4.5.2.zip <br></tb_cd> 
+						      <tb_cd>$ wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/4.5.2.zip <br></tb_cd> 
+						      <tb_cm># unpack<br></tb_cm>
+						      <tb_cd>$ unzip opencv.zip <br></tb_cd> 
+						      <tb_cd>$ unzip opencv_contrib.zip <br></tb_cd> 
+						      <tb_cm># some administration to make live easier later on<br></tb_cm>      
+						      <tb_cd>$ mv opencv-4.5.2 opencv<br></tb_cd> 
+						      <tb_cd>$ mv opencv_contrib-4.5.2 opencv_contrib<br></tb_cd> 
+						      <tb_cm># clean up the zip files<br></tb_cm>
+						      <tb_cd>$ rm opencv.zip<br></tb_cd> 
+						      <tb_cd>$ rm opencv_contrib.zip<br></tb_cd>       
+						    </div>
+						
+						    <input type="radio" name="tab2" id="tabfour">
+						    <label for="tabfour">OpenCV 4.5.1</label>
+						    <div class="tab2">
+						      <tb_cm># download the latest version<br></tb_cm>
+						      <tb_cd>$ cd ~ <br></tb_cd> 
+						      <tb_cd>$ wget -O opencv.zip https://github.com/opencv/opencv/archive/4.5.1.zip <br></tb_cd> 
+						      <tb_cd>$ wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/4.5.1.zip <br></tb_cd> 
+						      <tb_cm># unpack<br></tb_cm>
+						      <tb_cd>$ unzip opencv.zip <br></tb_cd> 
+						      <tb_cd>$ unzip opencv_contrib.zip <br></tb_cd> 
+						      <tb_cm># some administration to make live easier later on<br></tb_cm>      
+						      <tb_cd>$ mv opencv-4.5.1 opencv<br></tb_cd> 
+						      <tb_cd>$ mv opencv_contrib-4.5.1 opencv_contrib<br></tb_cd> 
+						      <tb_cm># clean up the zip files<br></tb_cm>
+						      <tb_cd>$ rm opencv.zip<br></tb_cd> 
+						      <tb_cd>$ rm opencv_contrib.zip<br></tb_cd>       
+						    </div>
+						
+						    <input type="radio" name="tab2" id="tabfive">
+						    <label for="tabfive">OpenCV 4.5.0</label>
+						    <div class="tab2">
+						      <tb_cm># download the latest version<br></tb_cm>
+						      <tb_cd>$ cd ~ <br></tb_cd> 
+						      <tb_cd>$ wget -O opencv.zip https://github.com/opencv/opencv/archive/4.5.0.zip <br></tb_cd> 
+						      <tb_cd>$ wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/4.5.0.zip <br></tb_cd> 
+						      <tb_cm># unpack<br></tb_cm>
+						      <tb_cd>$ unzip opencv.zip <br></tb_cd> 
+						      <tb_cd>$ unzip opencv_contrib.zip <br></tb_cd> 
+						      <tb_cm># some administration to make live easier later on<br></tb_cm>      
+						      <tb_cd>$ mv opencv-4.5.0 opencv<br></tb_cd> 
+						      <tb_cd>$ mv opencv_contrib-4.5.0 opencv_contrib<br></tb_cd> 
+						      <tb_cm># clean up the zip files<br></tb_cm>
+						      <tb_cd>$ rm opencv.zip<br></tb_cd> 
+						      <tb_cd>$ rm opencv_contrib.zip<br></tb_cd>       
+						    </div>
+						</div>
+						
+						
+						</div></div><div id="imCell_397" class="" data-responsive-sequence-number="29"> <div id="imCellStyleGraphics_397"></div><div id="imCellStyleBorders_397"></div><div id="imHTMLObject_68_397" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="50" height="20"></object>
+						</div></div><div id="imCell_396" class="" data-responsive-sequence-number="30"> <div id="imCellStyleGraphics_396"></div><div id="imCellStyleBorders_396"></div><div id="imHTMLObject_68_396" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="50" height="20"></object>
+						</div></div><div id="imPageRow_20" class="imPageRow">
+						
+						</div>
+						<div id="imCell_148" class="" data-responsive-sequence-number="31"> <div id="Start_build"></div><div id="imCellStyleGraphics_148"></div><div id="imCellStyleBorders_148"></div><div id="imTextObject_68_148">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_148_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div class="imHeading3"><h3>Build Make.</h3></div><div><div>Before we begin with the actual build of the library, there is one small step to go. You have to make <span class="fs12lh1-5">a directory where all the build files can be located.</span></div></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_21" class="imPageRow">
+						
+						</div>
+						<div id="imCell_126" class="" data-responsive-sequence-number="32"> <div id="imCellStyleGraphics_126"></div><div id="imCellStyleBorders_126"></div><div id="imHTMLObject_68_126" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="250" height="20"></object>
+						</div></div><div id="imCell_125" class="" data-responsive-sequence-number="33"> <div id="imCellStyleGraphics_125"></div><div id="imCellStyleBorders_125"></div><div id="imHTMLObject_68_125" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="250" height="20"></object>
+						</div></div><div id="imCell_127" class="" data-responsive-sequence-number="34"> <div id="imCellStyleGraphics_127"></div><div id="imCellStyleBorders_127"></div><div id="imTextObject_68_127">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_127_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div><span class="fs12lh1-5 ff1">$ cd ~/opencv</span><br></div><div><span class="fs12lh1-5 ff1">$ mkdir build</span></div><div><span class="fs12lh1-5 ff1">$ cd build</span></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_22" class="imPageRow">
+						
+						</div>
+						<div id="imCell_55" class="" data-responsive-sequence-number="35"> <div id="imCellStyleGraphics_55"></div><div id="imCellStyleBorders_55"></div><div id="imTextObject_68_55">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_55_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div><span class="fs12lh1-5">Now it is time for an important step. Here you tell CMake what, where and how to make OpenCV on your Raspberry. There are many flags involved. The most you will recognize. You will probably notice the </span><span class="fs11lh1-5 ff1">-D WITH_QT=OFF</span><span class="fs12lh1-5"> line. Here Qt5 support is disabled. Set </span><span class="fs11lh1-5 ff1">-D WITH_QT=ON</span><span class="fs12lh1-5"> if you choose to use the Qt5 software for the GUI. </span><span class="fs12lh1-5">We save space by excluding any (Python) examples or tests.</span></div><div><div><span class="fs12lh1-5">There are only bare spaces before the -D flags, not tabs. </span><span class="fs12lh1-5">By the way, the two last dots are no typo. It tells CMake where it can find its CMakeLists.txt (the large recipe file); one directory up.</span><br></div></div><div><div>Also, note the <b>/usr</b> directory where all header files and OpenCV libraries will reside. We have a slight preference for the <b>/usr/local</b> folder. For now, we'll be following the Tegra installation directory to keep pre-existing software running smoothly with the reinstalled OpenCV. Keep it in mind when you port some of our Raspberry Pi software on GitHub to your Jetson Nano. </div></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_23" class="imPageRow">
+						
+						</div>
+						<div id="imCell_394" class="" data-responsive-sequence-number="36"> <div id="imCellStyleGraphics_394"></div><div id="imCellStyleBorders_394"></div><div id="imHTMLObject_68_394" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><div class="tabs">
+						    <input type="radio" name="tab1" id="tabzero" checked="checked">
+						    <label for="tabzero">OpenCV 4.5.2</label>
+						    <div class="tab1">
+						        <tb_cd>$ cmake -D CMAKE_BUILD_TYPE=RELEASE \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D CMAKE_INSTALL_PREFIX=</tb_cd><tb_cd style="background-color: #E69036;">/usr</tb_cd><tb_cd> \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D EIGEN_INCLUDE_PATH=/usr/include/eigen3 \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_OPENCL=OFF \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_CUDA=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D CUDA_ARCH_BIN=5.3 \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D CUDA_ARCH_PTX="" \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_CUDNN=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_CUBLAS=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D ENABLE_FAST_MATH=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D CUDA_FAST_MATH=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D OPENCV_DNN_CUDA=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D ENABLE_NEON=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px; background-color: #E69036;">-D WITH_QT=OFF</tb_cd><tb_cd> \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_OPENMP=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_OPENGL=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D BUILD_TIFF=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_FFMPEG=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_GSTREAMER=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_TBB=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D BUILD_TBB=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D BUILD_TESTS=OFF \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_EIGEN=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_V4L=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_LIBV4L=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D OPENCV_ENABLE_NONFREE=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D INSTALL_C_EXAMPLES=OFF \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D INSTALL_PYTHON_EXAMPLES=OFF \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D BUILD_opencv_python3=TRUE \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D OPENCV_GENERATE_PKGCONFIG=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D BUILD_EXAMPLES=OFF ..<br></tb_cd>
+						    </div>
+						
+						    <input type="radio" name="tab1" id="tabone">
+						    <label for="tabone">OpenCV 4.5.1</label>
+						    <div class="tab1">
+						        <tb_cd>$ cmake -D CMAKE_BUILD_TYPE=RELEASE \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D CMAKE_INSTALL_PREFIX=</tb_cd><tb_cd style="background-color: #E69036;">/usr</tb_cd><tb_cd> \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D EIGEN_INCLUDE_PATH=/usr/include/eigen3 \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_OPENCL=OFF \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_CUDA=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D CUDA_ARCH_BIN=5.3 \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D CUDA_ARCH_PTX="" \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_CUDNN=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_CUBLAS=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D ENABLE_FAST_MATH=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D CUDA_FAST_MATH=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D OPENCV_DNN_CUDA=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D ENABLE_NEON=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px; background-color: #E69036;">-D WITH_QT=OFF</tb_cd><tb_cd> \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_OPENMP=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_OPENGL=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D BUILD_TIFF=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_FFMPEG=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_GSTREAMER=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_TBB=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D BUILD_TBB=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D BUILD_TESTS=OFF \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_EIGEN=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_V4L=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_LIBV4L=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D OPENCV_ENABLE_NONFREE=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D INSTALL_C_EXAMPLES=OFF \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D INSTALL_PYTHON_EXAMPLES=OFF \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D BUILD_NEW_PYTHON_SUPPORT=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D BUILD_opencv_python3=TRUE \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D OPENCV_GENERATE_PKGCONFIG=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D BUILD_EXAMPLES=OFF ..<br></tb_cd>
+						    </div>
+						
+						    <input type="radio" name="tab1" id="tabtwo">
+						    <label for="tabtwo">OpenCV 4.5.0</label>
+						    <div class="tab1">
+						        <tb_cd>$ cmake -D CMAKE_BUILD_TYPE=RELEASE \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D CMAKE_INSTALL_PREFIX=</tb_cd><tb_cd style="background-color: #E69036;">/usr</tb_cd><tb_cd> \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D EIGEN_INCLUDE_PATH=/usr/include/eigen3 \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_OPENCL=OFF \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_CUDA=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D CUDA_ARCH_BIN=5.3 \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D CUDA_ARCH_PTX="" \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_CUDNN=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_CUBLAS=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D ENABLE_FAST_MATH=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D CUDA_FAST_MATH=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D OPENCV_DNN_CUDA=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D ENABLE_NEON=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px; background-color: #E69036;">-D WITH_QT=OFF</tb_cd><tb_cd> \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_OPENMP=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_OPENGL=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D BUILD_TIFF=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_FFMPEG=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_GSTREAMER=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_TBB=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D BUILD_TBB=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D BUILD_TESTS=OFF \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_EIGEN=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_V4L=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D WITH_LIBV4L=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D OPENCV_ENABLE_NONFREE=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D INSTALL_C_EXAMPLES=OFF \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D INSTALL_PYTHON_EXAMPLES=OFF \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D BUILD_NEW_PYTHON_SUPPORT=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D BUILD_opencv_python3=TRUE \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D OPENCV_GENERATE_PKGCONFIG=ON \<br></tb_cd>
+						        <tb_cd style="margin-left:77px;">-D BUILD_EXAMPLES=OFF ..<br></tb_cd>
+						    </div>
+						</div>
+						
+						
+						</div></div><div id="imCell_392" class="" data-responsive-sequence-number="37"> <div id="imCellStyleGraphics_392"></div><div id="imCellStyleBorders_392"></div><div id="imHTMLObject_68_392" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="50" height="20"></object>
+						</div></div><div id="imCell_393" class="" data-responsive-sequence-number="38"> <div id="imCellStyleGraphics_393"></div><div id="imCellStyleBorders_393"></div><div id="imHTMLObject_68_393" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="50" height="20"></object>
+						</div></div><div id="imPageRow_24" class="imPageRow">
+						
+						</div>
+						<div id="imCell_346" class="" data-responsive-sequence-number="39"> <div id="imCellStyleGraphics_346"></div><div id="imCellStyleBorders_346"></div><div id="imTextObject_68_346">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_346_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div><span class="fs12lh1-5">Hopefully, everything went well and CMake comes with a report that looks something like the screenshot below.</span><br></div><div><span class="fs12lh1-5"><br></span></div><div class="imTACenter"><img class="image-1" src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/cmake-opencv.webp" data-src="images/cmake-opencv.webp" title="CMake OpenCV ready" alt="CMake OpenCV ready"><span class="fs12lh1-5"><br></span></div><div class="imTACenter"><div><br><div class="imHeading3"><h3>Make.</h3></div></div><div class="imTALeft"><span class="fs12lh1-5">With all compilation directives in place, you can start the build with the following command. This will take about two hours!</span></div></div><div> </div><style type="text/css"> 	<!-- 		@page { margin: 2cm } 		P { margin-bottom: 0.21cm } 	--> 	</style>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imCell_95" class="" data-responsive-sequence-number="40"> <div id="imCellStyleGraphics_95"></div><div id="imCellStyleBorders_95"></div><div id="imTextObject_68_95">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_95_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div><span class="fs12lh1-5 ff1">$ make -j4</span></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imCell_94" class="" data-responsive-sequence-number="41"> <div id="imCellStyleGraphics_94"></div><div id="imCellStyleBorders_94"></div><div id="imHTMLObject_68_94" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="250" height="20"></object>
+						</div></div><div id="imCell_92" class="" data-responsive-sequence-number="42"> <div id="imCellStyleGraphics_92"></div><div id="imCellStyleBorders_92"></div><div id="imHTMLObject_68_92" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="250" height="20"></object>
+						</div></div><div id="imPageRow_25" class="imPageRow">
+						
+						</div>
+						<div id="imCell_154" class="" data-responsive-sequence-number="43"> <div id="imCellStyleGraphics_154"></div><div id="imCellStyleBorders_154"></div><div id="imTextObject_68_154">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_154_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div><div>After minimal an hour and a half, your build should be ready and you get the screen below.</div></div><div><br></div><div class="imTACenter"><img class="image-0" src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/Make-ready.webp" data-src="images/Make-ready.webp" title="Make Rdy" alt="Make Rdy"><br></div><div class="imTACenter"><br></div><div class="imTALeft"><div>After a successful compilation, you can remove the old packages and install all newly generated packages in the database of your system with the following commands. The final instructions will delete the SD memory swap software installed at the beginning of this manual.</div></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_26" class="imPageRow">
+						
+						</div>
+						<div id="imCell_98" class="" data-responsive-sequence-number="44"> <div id="imCellStyleGraphics_98"></div><div id="imCellStyleBorders_98"></div><div id="imHTMLObject_68_98" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="250" height="20"></object>
+						</div></div><div id="imCell_97" class="" data-responsive-sequence-number="45"> <div id="imCellStyleGraphics_97"></div><div id="imCellStyleBorders_97"></div><div id="imTextObject_68_97">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_97_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div><span class="ff1">$ sudo rm -r /usr/include/opencv4/opencv2</span></div><div><span class="fs12lh1-5 ff1">$ sudo make install</span><br></div><div><span class="fs12lh1-5 ff1">$ sudo ldconfig</span></div><div><span class="fs11lh1-5 cf1 ff1"># cleaning (frees 300 MB)</span></div><div><span class="fs12lh1-5 ff1">$ make clean</span></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get update</span></div><div><div><span class="fs11lh1-5 cf2 ff1"># remove the dphys-swapfile now</span><br></div><div><span class="fs12lh1-5 ff1">$ sudo /etc/init.d/dphys-swapfile stop</span></div><div><span class="fs12lh1-5 ff1">$ sudo apt-get remove --purge dphys-swapfile</span></div></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imCell_99" class="" data-responsive-sequence-number="46"> <div id="imCellStyleGraphics_99"></div><div id="imCellStyleBorders_99"></div><div id="imHTMLObject_68_99" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="250" height="20"></object>
+						</div></div><div id="imPageRow_27" class="imPageRow">
+						
+						</div>
+						<div id="imCell_149" class="" data-responsive-sequence-number="47"> <div id="imCellStyleGraphics_149"></div><div id="imCellStyleBorders_149"></div><div id="imTextObject_68_149">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_149_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div class="imHeading3"><h3>Checking.</h3></div><div><span class="fs12lh1-5">Now it is time to check your installation. It can be done in a fast way by using Python. Use the commands shown in the screen dump below. It all speaks for itself.</span><span class="fs12lh1-5"> </span></div><div><span class="fs12lh1-5"><br></span></div><div class="imTACenter"><img class="image-1" src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/Succes_4_5_Jetson.webp" data-src="images/Succes_4_5_Jetson.webp" title="Succes_4_5" alt="Succes_4_5"><br></div><div class="imTACenter"><br></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_28" class="imPageRow">
+						
+						</div>
+						<div id="imCell_356" class="" data-responsive-sequence-number="48"> <div id="imCellStyleGraphics_356"></div><div id="imCellStyleBorders_356"></div><div id="imTextObject_68_356">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_356_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div class="imHeading3"><h3>Cleaning.</h3></div><div>If you are in shortage of disk space, you may consider deleting the <span class="fs12lh1-5 ff1">~/opencv</span> and <span class="fs12lh1-5 ff1">~/opencv_contrib</span> folders. By the command, <span class="fs11lh1-5 ff2">sudo make install</span>, you have copied all the headers and libraries to their appropriate locations on your disk. The original files in the <span class="fs12lh1-5 ff1">~/opencv/build/</span> folder are no longer needed. Of course, if you have<span class="fs12lh1-5">, for instance,</span><span class="fs12lh1-5"> enabled the building of examples, </span><span class="fs12lh1-5">you obviously cannot delete the folders</span><span class="fs12lh1-5"> as this will also remove these samples. Let's say it's just a tip saving about 1.5 GByte of space.</span><br></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imCell_352" class="" data-responsive-sequence-number="49"> <div id="imCellStyleGraphics_352"></div><div id="imCellStyleBorders_352"></div><div id="imHTMLObject_68_352" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="250" height="20"></object>
+						</div></div><div id="imCell_353" class="" data-responsive-sequence-number="50"> <div id="imCellStyleGraphics_353"></div><div id="imCellStyleBorders_353"></div><div id="imHTMLObject_68_353" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="250" height="20"></object>
+						</div></div><div id="imCell_355" class="" data-responsive-sequence-number="51"> <div id="imCellStyleGraphics_355"></div><div id="imCellStyleBorders_355"></div><div id="imTextObject_68_355">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_355_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div data-line-height="1.15" class="lh1-15"><div><span class="fs11lh1-15 cf1 ff1"># just a tip to save an additional 275 MB</span></div></div><div data-line-height="1.15" class="lh1-15"><span class="fs12lh1-15 ff1">$ sudo rm -rf ~/opencv</span><br></div><div data-line-height="1.15" class="lh1-15"><div><span class="fs12lh1-15 ff1">$ sudo rm -rf ~/opencv_contrib</span></div></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_29" class="imPageRow">
+						
+						</div>
+						<div id="imCell_362" class="" data-responsive-sequence-number="52"> <div id="imCellStyleGraphics_362"></div><div id="imCellStyleBorders_362"></div><div id="imTextObject_68_362">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_362_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div class="imHeading3"><h3>cv : : dnn : : net.</h3></div><div class="imTALeft"><div><span class="fs12lh1-5">OpenCV comes with an excellent deep learning framework module. Without any additional installations, you can run TensorFlow, Caffe, ONNX, PyTorch or Darknet models. See this <a href="https://docs.opencv.org/4.5.1/d6/d0f/group__dnn.html" onclick="return x5engine.imShowBox({ media:[{type: &#39;iframe&#39;, url: &#39;https://docs.opencv.org/4.5.1/d6/d0f/group__dnn.html&#39;, width: 1920, height: 1080, description: &#39;&#39;}]}, 0, this);" class="imCssLink">OpenCV page</a> for more information.</span></div><div><span class="fs12lh1-5">Now that we've installed OpenCV with CUDA support, it's interesting to see the performance gains this brings to the deep learning models. Several tests have been carried out for this purpose. The results are shown in the table below.</span></div></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_30" class="imPageRow">
+						
+						</div>
+						<div id="imCell_367" class="" data-responsive-sequence-number="53"> <div id="imCellStyleGraphics_367"></div><div id="imCellStyleBorders_367"></div><div id="imTableObject_68_367">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTableObject_68_367_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<table data-minrequestedwidth="747" data-computedwidth="747" style="width: 747px;"><tbody><tr><td style="text-align: center; height: 61px; background-color: rgb(223, 255, 191); margin-top: 0px; margin-left: 0px; width: 168px;" class="imVc">Model</td><td style="text-align: center; height: 61px; margin-top: 0px; margin-left: 0px; background-color: rgb(223, 255, 191); width: 99px;" class="imVc">CPU <br>2 GHz</td><td style="height: 61px; display: table-cell; margin-top: 0px; margin-left: 0px; background-color: rgb(223, 255, 191); width: 92px;" class="imVc"><div class="imTACenter">CPU + CUDA</div><div class="imTACenter"><b>2 GHz</b></div></td><td style="height: 61px; display: table-cell; margin-top: 0px; margin-left: 0px; width: 106px; background-color: rgb(223, 255, 191);" class="imVc"><div class="imTACenter"><span class="fs12lh1-5">CPU</span></div><div class="imTACenter"><span class="fs12lh1-5">1.47 GHz</span></div></td><td style="text-align: center; height: 61px; display: table-cell; background-color: rgb(223, 255, 191); margin-top: 0px; margin-left: 0px; width: 113px;" class="imVc">CPU + CUDA<br>1.47 GHz</td><td style="text-align: center; height: 61px; display: table-cell; background-color: rgb(223, 255, 191); margin-top: 0px; margin-left: 0px; width: 126px;" class="imVc">Raspberry Pi 4<br>1.9 GHz</td></tr><tr><td style="height: 51px; width: 168px;" class="imVc"><div class="imTACenter">UltraFace </div><div class="imTACenter">1.1 MByte</div></td><td style="text-align: center; height: 51px; margin-top: 0px; margin-left: 0px; width: 99px;" class="imVc"><div><span class="fs12lh1-5">48 FPS</span></div></td><td style="text-align: center; height: 51px; display: table-cell; margin-top: 0px; margin-left: 0px; width: 92px;" class="imVc"><b>35 </b>FPS</td><td style="text-align: center; height: 51px; display: table-cell; width: 106px; margin-top: 0px; margin-left: 0px;" class="imVc"><div>37 FPS</div></td><td style="text-align: center; height: 51px; display: table-cell; width: 113px;" class="imVc"><div>31 FPS</div></td><td style="text-align: center; height: 51px; display: table-cell; width: 126px;" class="imVc">28.8 FPS</td></tr><tr><td style="height: 51px; width: 168px;" class="imVc"><div class="imTACenter">MobileNetV1_SSD &nbsp;&nbsp;</div><div class="imTACenter">28 MByte</div></td><td style="text-align: center; height: 51px; margin-top: 0px; margin-left: 0px; width: 99px;" class="imVc"><div>8.1 FPS</div></td><td style="text-align: center; height: 51px; display: table-cell; margin-top: 0px; margin-left: 0px; width: 92px;" class="imVc"><b>13.3</b> FPS</td><td style="text-align: center; height: 51px; display: table-cell; width: 106px; margin-top: 0px; margin-left: 0px;" class="imVc">6.3 FPS</td><td style="text-align: center; height: 51px; display: table-cell; width: 113px;" class="imVc"><div><span class="fs12lh1-5">10.0 FPS</span></div></td><td style="text-align: center; height: 51px; display: table-cell; width: 126px;" class="imVc">5.6 FPS</td></tr><tr><td style="text-align: center; height: 51px; width: 168px;" class="imVc">GoogleLeNet<br>51 MByte</td><td style="text-align: center; height: 51px; margin-top: 0px; margin-left: 0px; width: 99px;" class="imVc">6.25 FPS</td><td style="text-align: center; height: 51px; display: table-cell; width: 92px;" class="imVc"><b>21.7 </b>FPS</td><td style="text-align: center; height: 51px; display: table-cell; width: 106px;" class="imVc">4.7 FPS</td><td style="text-align: center; height: 51px; display: table-cell; width: 113px;" class="imVc">20.4 FPS</td><td style="text-align: center; height: 51px; display: table-cell; width: 126px;" class="imVc">5 FPS</td></tr><tr><td style="text-align: center; height: 49px; width: 168px;" class="imVc"><div><span class="fs12lh1-5">MobileNetV2_SSD &nbsp;&nbsp;</span></div><div><span class="fs12lh1-5">66 MByte</span></div></td><td style="text-align: center; height: 49px; margin-top: 0px; margin-left: 0px; width: 99px;" class="imVc"><div><span class="fs12lh1-5">4.5 FPS</span></div></td><td style="text-align: center; height: 49px; display: table-cell; width: 92px;" class="imVc"><div><span class="fs12lh1-5"><b>8.0</b> FPS</span></div></td><td style="text-align: center; height: 49px; display: table-cell; width: 106px;" class="imVc"><div><span class="fs12lh1-5">3.52 FPS</span></div></td><td style="text-align: center; height: 49px; display: table-cell; width: 113px;" class="imVc"><div><span class="fs12lh1-5">6.7 FPS</span></div></td><td style="text-align: center; height: 49px; display: table-cell; width: 126px;" class="imVc">3.2 FPS</td></tr><tr><td style="text-align: center; height: 51px; width: 168px;" class="imVc">ResNet50<br>98 MByte</td><td style="text-align: center; height: 51px; margin-top: 0px; margin-left: 0px; width: 99px;" class="imVc">2.7 FPS<br></td><td style="text-align: center; height: 51px; display: table-cell; width: 92px; margin-top: 0px; margin-left: 0px;" class="imVc"><b>13 </b>FPS<br></td><td style="text-align: center; height: 51px; display: table-cell; width: 106px;" class="imVc">2.1 FPS</td><td style="text-align: center; height: 51px; display: table-cell; width: 113px;" class="imVc">12.35 FPS</td><td style="text-align: center; height: 51px; display: table-cell; width: 126px;" class="imVc">2 FPS</td></tr><tr><td style="text-align: center; height: 51px; width: 168px;" class="imVc">VGG16<br>528 MByte</td><td style="text-align: center; height: 51px; margin-top: 0px; margin-left: 0px; width: 99px;" class="imVc">0.7 FPS</td><td style="text-align: center; height: 51px; display: table-cell; width: 92px;" class="imVc"><b>4.35 </b>FPS</td><td style="text-align: center; height: 51px; display: table-cell; width: 106px;" class="imVc">0.52 FPS</td><td style="text-align: center; height: 51px; display: table-cell; width: 113px;" class="imVc">4.17 FPS</td><td style="text-align: center; height: 51px; display: table-cell; width: 126px;" class="imVc">0.52 FPS</td></tr><tr><td style="text-align: center; height: 51px; width: 168px;" class="imVc">YOLOV4 (416x416)<br>245 MByte</td><td style="text-align: center; height: 51px; margin-top: 0px; margin-left: 0px; width: 99px;" class="imVc">0.35 FPS</td><td style="text-align: center; height: 51px; display: table-cell; width: 92px;" class="imVc"><b>1.94 </b>FPS</td><td style="text-align: center; height: 51px; display: table-cell; width: 106px;" class="imVc">0.26 FPS</td><td style="text-align: center; height: 51px; display: table-cell; width: 113px;" class="imVc">1.84 FPS</td><td style="text-align: center; height: 51px; display: table-cell; width: 126px;" class="imVc">0.46 FPS</td></tr></tbody></table>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_31" class="imPageRow">
+						
+						</div>
+						<div id="imCell_363" class="" data-responsive-sequence-number="54"> <div id="imCellStyleGraphics_363"></div><div id="imCellStyleBorders_363"></div><div id="imTextObject_68_363">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_363_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div><span class="fs12lh1-5">The first to columns are the results with an overclocked Jetson Nano. The second two are the outcomes with Jetson Nano with the regular clock speed. The last column is added for comparison reasons, an overclocked Raspberry Pi 4.</span></div><div><div>Also note that the larger the model, the more effect CUDA has. A very tiny model like UltraFace becomes even slower. It has to do with the relatively time-consuming memory swapping between CPU and GPU. The more tensors the GPU can process at one time, the better the performance boost.</div></div><div><br></div><div><span class="fs12lh1-5">To enable CUDA support for your network, two additional lines of code are required</span><span class="fs12lh1-5">. Without these lines, OpenCV falls to its default CPU mode.</span><br></div><div class="imTALeft"><div>Note also some time elapse before your application comes to live. That has to do with the rather time-consuming heuristic search in the background for the best tensor calculation strategy.</div></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_32" class="imPageRow">
+						
+						</div>
+						<div id="imCell_364" class="" data-responsive-sequence-number="55"> <div id="imCellStyleGraphics_364"></div><div id="imCellStyleBorders_364"></div><div id="imHTMLObject_68_364" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><div id="myBlock" style="width: 800px">
+						
+						<div class="code-toolbar"><pre class=" language-cpp"><code class=" language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;opencv2/dnn/dnn.hpp&gt;</span></span>
+
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token comment">// load some network</span>
+    net <span class="token operator">=</span> cv<span class="token operator">::</span>dnn<span class="token operator">::</span><span class="token function">readNetFromCaffe</span><span class="token punctuation">(</span><span class="token string">"ResNet-50.prototxt"</span><span class="token punctuation">,</span> <span class="token string">"ResNet-50.caffemodel"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// check</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>net<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"init the model net error"</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+        <span class="token keyword keyword-return">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// enable CUDA support</span>
+    net<span class="token punctuation">.</span><span class="token function">setPreferableBackend</span><span class="token punctuation">(</span>cv<span class="token operator">::</span>dnn<span class="token operator">::</span>DNN_BACKEND_CUDA<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    net<span class="token punctuation">.</span><span class="token function">setPreferableTarget</span><span class="token punctuation">(</span>cv<span class="token operator">::</span>dnn<span class="token operator">::</span>DNN_TARGET_CUDA<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></code></pre><div class="toolbar"><div class="toolbar-item"><button>Copy</button></div></div></div>
+						</div></div></div><div id="imCell_365" class="" data-responsive-sequence-number="56"> <div id="imCellStyleGraphics_365"></div><div id="imCellStyleBorders_365"></div><div id="imHTMLObject_68_365" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="50" height="20"></object>
+						</div></div><div id="imCell_366" class="" data-responsive-sequence-number="57"> <div id="imCellStyleGraphics_366"></div><div id="imCellStyleBorders_366"></div><div id="imHTMLObject_68_366" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="50" height="20"></object>
+						</div></div><div id="imPageRow_33" class="imPageRow">
+						
+						</div>
+						<div id="imCell_351" class="" data-responsive-sequence-number="58"> <div id="imCellStyleGraphics_351"></div><div id="imCellStyleBorders_351"></div><div id="imTextObject_68_351">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_351_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div class="imHeading3"><h3>JTOP.</h3></div><div class="imTALeft"><div>You probably already have jtop installed. If not, you should do it right away. An excellent debug tool by Raffaello Bonghi especially made for the Jetson family. It gives you all the information you are looking for during development, just like htop. You can install it with the following command.</div></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_34" class="imPageRow">
+						
+						</div>
+						<div id="imCell_348" class="" data-responsive-sequence-number="59"> <div id="imCellStyleGraphics_348"></div><div id="imCellStyleBorders_348"></div><div id="imTextObject_68_348">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_348_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div><span class="ff1">$ </span><span class="fs12lh1-5 ff1">sudo -H pip install -U jetson-stats</span></div><div><span class="fs12lh1-5 ff1">$ sudo reboot</span></div><div><div><span class="fs11lh1-5 cf1 ff1"># start the app with the simple command</span></div></div><div><div><span class="fs12lh1-5 ff1">$ jtop</span></div></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imCell_349" class="" data-responsive-sequence-number="60"> <div id="imCellStyleGraphics_349"></div><div id="imCellStyleBorders_349"></div><div id="imHTMLObject_68_349" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="250" height="20"></object>
+						</div></div><div id="imCell_350" class="" data-responsive-sequence-number="61"> <div id="imCellStyleGraphics_350"></div><div id="imCellStyleBorders_350"></div><div id="imHTMLObject_68_350" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><object width="250" height="20"></object>
+						</div></div><div id="imPageRow_35" class="imPageRow">
+						
+						</div>
+						<div id="imCell_347" class="" data-responsive-sequence-number="62"> <div id="imCellStyleGraphics_347"></div><div id="imCellStyleBorders_347"></div><div id="imTextObject_68_347">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTextObject_68_347_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<div class="imTACenter"><img class="image-1" src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/jtop3_4_5.webp" data-src="images/jtop3_4_5.webp" title="Jtop_4_5" alt="Jtop_4_5"><br></div><div class="imTACenter"><br></div><div class="imTACenter"><br></div><div class="imTACenter"><br></div><div class="imTACenter"><img class="image-3" src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/jtop_4_5_Opencv.webp" data-src="images/jtop_4_5_Opencv.webp" title="Jtop_4_5_OpenCV" alt="Jtop_4_5_OpenCV"><br></div><div class="imTACenter"><br></div><div class="imTALeft"><div class="imHeading3"><h3>Jetson family.</h3><br></div><div>Finally, we would like you to give an overview of all the single board computers NVIDIA currently has.</div></div>
+								</div>
+							</div>
+						
+						</div>
+						</div><div id="imPageRow_36" class="imPageRow">
+						
+						</div>
+						<div id="imCell_338" class="" data-responsive-sequence-number="63"> <div id="ListOfBoards"></div><div id="imCellStyleGraphics_338"></div><div id="imCellStyleBorders_338"></div><div id="imTableObject_68_338">
+							<div data-index="0" class="text-tab-content grid-prop current-tab " id="imTableObject_68_338_tab0" style="opacity: 1; ">
+								<div class="text-inner">
+									<table data-minrequestedwidth="852" data-computedwidth="852" style="width: 852px;"><tbody><tr><td style="text-align: center; width: 469px; height: 372px; background-color: rgb(255, 255, 255); margin-top: 0px; margin-left: 0px;" class="imVc"><img class="image-4" src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/Nano2GB.webp" data-src="images/Nano2GB.webp" title="" alt="none"><br></td><td style="text-align: center; width: 368px; height: 372px; background-color: rgb(255, 255, 255); margin-top: 0px; margin-left: 0px;" class="imVc"><div><span class="fs20lh1-5">Jetson Nano 2 GByte</span></div><div><span class="fs12lh1-5">4x Cortex-A57 CPU</span></div><div><span class="fs12lh1-5">128x CUDA</span></div><div><span class="fs12lh1-5">1.88 TOPS</span></div><div><span class="fs12lh1-5">1.43 GHz - 2 GB</span></div><div><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">☆</span><span class="fs12lh1-5">☆</span><span class="fs12lh1-5">☆</span><br></div><div><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">☆</span><span class="fs12lh1-5">☆</span><br></div><div><span class="fs12lh1-5">€ 50</span></div><div class="imTALeft"><br></div><div class="imTALeft"><span class="imTACenter fs12lh1-5">Striped version to compete with the Raspberry. One USB 3 port, a single camera and 2 GByte of RAM. A good start for your first deep learning steps, as long as your models fit the 2 GB.</span></div></td></tr><tr><td style="text-align: center; width: 469px; height: 374px; background-color: rgb(255, 255, 255); margin-top: 0px; margin-left: 0px;" class="imVc"><div><img class="image-14" src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/JetsonNano.webp" data-src="images/JetsonNano.webp" title="Jetson NANO" alt="Jetson NANO"></div></td><td style="text-align: center; width: 368px; height: 374px; background-color: rgb(255, 255, 255); margin-top: 0px; margin-left: 0px;" class="imVc"><div><span class="fs20lh1-5">Jetson Nano A02</span></div><div><span class="fs12lh1-5">4x Cortex-A57 CPU</span></div><div><span class="fs12lh1-5">128x CUDA</span></div><div><span class="fs12lh1-5">1.88 TOPS</span></div><div><span class="fs12lh1-5">1.43 GHz - 4 GB</span></div><div><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">☆</span><span class="fs12lh1-5">☆</span></div><div><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">☆</span></div><div><span class="fs12lh1-5">€ 100</span></div><div class="imTALeft"><br></div><div class="imTALeft"><span class="fs12lh1-5">Single board computer like a Raspberry with special hardware tensor </span><span class="fs12lh1-5">acceleration by the</span><span class="fs12lh1-5"> </span><span class="fs12lh1-5">floating point CUDA's</span></div></td></tr><tr><td style="text-align: center; width: 469px; height: 384px; background-color: rgb(255, 255, 255); margin-top: 0px; margin-left: 0px;" class="imVc"><img class="image-3" src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/Jetson-Nano-Developer-Kit-B01.webp" data-src="images/Jetson-Nano-Developer-Kit-B01.webp" title="Jetson nano B2" alt="Jetson nano B2"><br></td><td style="text-align: center; width: 368px; height: 384px; background-color: rgb(255, 255, 255); margin-top: 0px; margin-left: 0px;" class="imVc"><div><span class="fs20lh1-5">Jetson Nano B01</span></div><div><span class="fs12lh1-5">4x Cortex-A57 CPU</span></div><div><span class="fs12lh1-5">128x CUDA</span></div><div><span class="fs12lh1-5">1.88 TOPS</span></div><div><span class="fs12lh1-5">1.43 GHz - 4 GB</span></div><div><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">☆</span><span class="fs12lh1-5">☆</span></div><div><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">☆</span></div><div><span class="fs12lh1-5">€ 110</span></div><div class="imTALeft"><br></div><div class="imTALeft">Identical to the Jetson Nano A02 board, except it has two camera ports<span class="fs12lh1-5">, which makes it ready for binocular applications like stereo recording, depth sensing, 3D object tracking and image stitching.</span></div></td></tr><tr><td style="text-align: center; width: 469px; height: 358px; background-color: rgb(255, 255, 255); margin-top: 0px; margin-left: 0px;" class="imVc"><img class="image-1" src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/Jetson-TX2.webp" data-src="images/Jetson-TX2.webp" title="Jetson TX2" alt="Jetson TX2"><br></td><td style="width: 368px; height: 358px; background-color: rgb(255, 255, 255); margin-top: 0px; margin-left: 0px;" class="imVc"><div class="imTACenter"><div><span class="fs20lh1-5">Jetson TX 2</span></div><div><span class="fs12lh1-5">2x ARMv8-A64 + 4x Cortex-A57 CPU</span></div><div><span class="fs12lh1-5">256x CUDA</span></div><div><span class="fs12lh1-5">5.32 TOPS</span></div><div><span class="fs12lh1-5">1.5 GHz - 8 GB</span></div><div><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">☆</span><br></div><div><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span></div><div><span class="fs12lh1-5">€ 429</span></div><div class="imTALeft"><br></div><div class="imTALeft"><div>Jetson TX2 was the mid-range AI single-board solution of NVIDIA. With a powerful multi-core CPU and Pascal GPU, it can perform many deep learning tasks. It's replaced by its successor, the Jetson Xavier.</div></div></div></td></tr><tr><td style="text-align: center; width: 469px; height: 372px; background-color: rgb(255, 255, 255); margin-top: 0px; margin-left: 0px;" class="imVc"><img class="image-2" src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/jetson-xavier.webp" data-src="images/jetson-xavier.webp" title="Jetson Xavier" alt="Jetson Xavier"><br></td><td style="text-align: center; width: 368px; height: 372px; background-color: rgb(255, 255, 255); margin-top: 0px; margin-left: 0px;" class="imVc"><div><span class="fs20lh1-5">Jetson Xavier</span></div><div><span class="fs12lh1-5">6x ARMv8-A64 CPU</span></div><div><span class="fs12lh1-5">384x CUDA</span></div><div><span class="fs12lh1-5">84 TOPS</span></div><div><span class="fs12lh1-5">2.2 GHz - 8 GB</span></div><div><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span></div><div><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span></div><div><span class="fs12lh1-5">€ 429</span></div><div class="imTALeft"><br></div><div class="imTALeft"><div>The Xavier is a high-performance single-board specialized for AI tasks. Impressive GPU acceleration enables complex deep learning models to run in real-time. Six camera inputs and many I/O makes it a real workhorse.</div></div></td></tr><tr><td style="text-align: center; width: 469px; height: 384px; background-color: rgb(255, 255, 255); margin-top: 0px; margin-left: 0px;" class="imVc"><img class="image-9" src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/Xavier-AGX-Xavier.webp" data-src="images/Xavier-AGX-Xavier.webp" title="Jetson AGX Xavier" alt="Jetson AGX Xavier"><br></td><td style="text-align: center; width: 368px; height: 384px; background-color: rgb(255, 255, 255); margin-top: 0px; margin-left: 0px;" class="imVc"><div><div><span class="fs20lh1-5">Jetson AGX Xavier</span></div><div><span class="fs12lh1-5">8x ARMv8-A64 CPU</span></div><div><span class="fs12lh1-5">512x CUDA</span></div><div><span class="fs12lh1-5">128 TOPS</span></div><div><span class="fs12lh1-5">2.2 GHz - 32 GB</span></div><div><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span></div><div><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span><span class="fs12lh1-5">★</span></div><div><span class="fs12lh1-5">€ 749</span></div><div class="imTALeft"><br></div><div class="imTALeft"><div>The AGX Xavier is a small supercomputer on a single board. It is suitable for the most demanding AI tasks. It is suited for deploying and training the most neural networks very fast.</div></div></div><div class="imTALeft"><div></div></div></td></tr></tbody><style type="text/css"> 	<!-- 		@page { margin: 2cm } 		P { margin-bottom: 0.21cm } 	--> 	</style><style type="text/css"> 	<!-- 		@page { margin: 2cm } 		P { margin-bottom: 0.21cm } 	--> 	</style><style type="text/css"> 	<!-- 		@page { margin: 2cm } 		P { margin-bottom: 0.21cm } 	--> 	</style><style type="text/css"> 	<!-- 		@page { margin: 2cm } 		P { margin-bottom: 0.21cm } 	--> 	</style><style type="text/css"> 	<!-- 		@page { margin: 2cm } 		P { margin-bottom: 0.21cm } 	--> 	</style><style type="text/css"> 	<!-- 		@page { margin: 2cm } 		P { margin-bottom: 0.21cm } 	--> 	</style><style type="text/css"> 	<!-- 		@page { margin: 2cm } 		P { margin-bottom: 0.21cm } 	--> 	</style></table>
+								</div>
+							</div>
+						
+						</div>
+						</div>
+					</main>
+					<footer id="imFooter">
+						<div id="imFooterObjects"><div id="imFooter_imHTMLObject_33_wrapper" class="template-object-wrapper"><div id="imFooter_imHTMLObject_33" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;deep-learning-with-raspberry-pi-and-alternatives.html&#39;, null, false)"><span>Deep learning</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;google-corals-tpu-explained.html&#39;, null, false)"><span>Google Edge TPU</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;deep-learning-with-fpga-aka-bnn.html&#39;, null, false)"><span>FPGA aka BNN</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;computer-vision-with-raspberry-pi-and-alternatives.html&#39;, null, false)"><span>Computer vision</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-caffe-on-ubuntu-20.04-with-opencv-4.4.html&#39;, null, false)"><span>Caffe, OpenCV, Ubuntu</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;jevois.html&#39;, null, false)"><span>Jevois</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;deep-learning-algorithms-for-raspberry-pi-and-alternatives.html&#39;, null, false)"><span>DL algorithms</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;overclocking-the-raspberry-pi-4.html&#39;, null, false)"><span>Overclocking to 2 GHz</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;protect-the-raspberry-pi-4-sd-flashcard.html&#39;, null, false)"><span>Protect your SD card</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-qt5-with-opencv-on-raspberry-pi-4.html&#39;, null, false)"><span>Qt5 + OpenCV</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-vulkan-on-raspberry-pi.html&#39;, null, false)"><span>Vulkan + PiKiss</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-opencv-4.5-on-raspberry-pi-4.html&#39;, null, false)"><span>OpenCV 4.5 (32)</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-1.15.2-on-raspberry-pi-4.html&#39;, null, false)"><span>TensorFlow 1.15.2 (32)</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-2.2.0-on-raspberry-pi-4.html&#39;, null, false)"><span>TensorFlow 2.2.0 (32)</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-2-lite-on-raspberry-pi-4.html&#39;, null, false)"><span>TensorFlow Lite (32)</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-raspberry-64-os.html&#39;, null, 
+false)"><span>64 bit OS + USB boot</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-opencv-4.5-on-raspberry-64-os.html&#39;, null, false)"><span>OpenCV 4.5 (64)</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-opencv-lite-on-raspberry-64-os.html&#39;, null, false)"><span>OpenCV Lite</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-2.4.0-on-raspberry-64-os.html&#39;, null, false)"><span>TensorFlow 2.4.1 (64)</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-2-lite-on-raspberry-64-os.html&#39;, null, false)"><span>TensorFlow Lite (64)</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;deep-learning-examples-on-raspberry-32-64-os.html&#39;, null, false)"><span>DL examples (32/64)</span></button></div></div><div id="imFooter_imHTMLObject_35_wrapper" class="template-object-wrapper"><div id="imFooter_imHTMLObject_35" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;opencv-c-examples-on-raspberry-pi.html&#39;, null, false)"><span>OpenCV examples</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-ubuntu-20.04-on-raspberry-pi-4.html&#39;, null, false)"><span>Ubuntu + TF Lite</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-opencl-on-raspberry-pi-3.html&#39;, null, false)"><span>OpenCL</span></button>
+<button class="button3" style="font-size : 15px;" onclick="return x5engine.utils.location(&#39;deep-learning-software-for-raspberry-pi-and-alternatives.html&#39;, null, false)"><span>Frameworks</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;deep-learning-with-opencv-on-raspberry-pi-4.html&#39;, null, false)"><span>OpenCV</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-ncnn-on-raspberry-pi-4.html&#39;, null, false)"><span>ncnn</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-mnn-on-raspberry-pi-4.html&#39;, null, false)"><span>MNN</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-paddlepaddle-on-raspberry-pi-4.html&#39;, null, false)"><span>Paddle 2.0.0</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-paddle-lite-on-raspberry-pi-4.html&#39;, null, false)"><span>Paddle Lite</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-armnn-on-raspberry-pi-4.html&#39;, null, false)"><span>ARMnn</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-mxnet-on-raspberry-pi-4.html&#39;, null, false)"><span>MXNet</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-caffe-on-raspberry-pi-4.html&#39;, null, false)"><span>Caffe</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-pytorch-on-raspberry-pi-4.html&#39;, null, false)"><span>PyTorch</span></button>
+
+<button class="button3" style="font-size : 15px;"><span>Jetson Nano</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;overclocking-the-jetson-nano.html&#39;, null, false)"><span>Overclocking</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-opencv-4.5-on-jetson-nano.html&#39;, null, false)"><span>OpenCV 4.5</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-2.4.0-on-jetson-nano.html&#39;, null, false)"><span>TensorFlow 2.4.1</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-2-lite-on-jetson-nano.html&#39;, null, false)"><span>TensorFlow Lite</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-ncnn-on-jetson-nano.html&#39;, null, false)"><span>ncnn</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-mnn-on-jetson-nano.html&#39;, null, false)"><span>MNN</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-paddle-on-jetson-nano.html&#39;, null, false)"><span>Paddle + Lite</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-caffe-on-jetson-nano.html&#39;, null, false)"><span>Caffe</span></button>
+<button class="button3" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-pytorch-on-jetson-nano.html&#39;, null, false)"><span>PyTorch</span></button></div></div><div id="imFooter_imHTMLObject_40_wrapper" class="template-object-wrapper"><div id="imFooter_imHTMLObject_40" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-raspberry-64-os.html&#39;, null, false)"><span>64 bit OS + USB boot</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-opencv-4.5-on-raspberry-64-os.html&#39;, null, false)"><span>OpenCV 4.5</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-opencv-lite-on-raspberry-64-os.html&#39;, null, false)"><span>OpenCV Lite</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-2.4.0-on-raspberry-64-os.html&#39;, null, false)"><span>TensorFlow 2.4.1</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-2-lite-on-raspberry-64-os.html&#39;, null, false)"><span>TensorFlow Lite</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;deep-learning-examples-on-raspberry-32-64-os.html&#39;, null, false)"><span>Deep learn examples</span></button>
+</div></div><div id="imFooter_imObjectTitle_41_wrapper" class="template-object-wrapper"><div id="imFooter_imObjectTitle_41"><span id="imFooter_imObjectTitle_41_text">Install 64 OS</span></div></div><div id="imFooter_imObjectTitle_42_wrapper" class="template-object-wrapper"><div id="imFooter_imObjectTitle_42"><span id="imFooter_imObjectTitle_42_text">Install 32 OS</span></div></div><div id="imFooter_imObjectTitle_43_wrapper" class="template-object-wrapper"><div id="imFooter_imObjectTitle_43"><span id="imFooter_imObjectTitle_43_text">Raspberry and alt</span></div></div><div id="imFooter_imObjectTitle_44_wrapper" class="template-object-wrapper"><div id="imFooter_imObjectTitle_44"><span id="imFooter_imObjectTitle_44_text">Raspberry Pi 4</span></div></div><div id="imFooter_imObjectTitle_45_wrapper" class="template-object-wrapper"><div id="imFooter_imObjectTitle_45"><span id="imFooter_imObjectTitle_45_text">Jetson Nano</span></div></div><div id="imFooter_imHTMLObject_46_wrapper" class="template-object-wrapper"><div id="imFooter_imHTMLObject_46" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><button class="button" style="vertical-align:middle; font-size: 15px;" onclick="return x5engine.utils.location(&#39;deep-learning-software-for-raspberry-pi-and-alternatives.html&#39;, null, false)"><span>Frameworks</span></button></div></div><div id="imFooter_imObjectImage_47_wrapper" class="template-object-wrapper"><div id="imFooter_imObjectImage_47"><div id="imFooter_imObjectImage_47_container"><a href="https://github.com/Qengineering" target="_blank"><img src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/GithubSmall.png" data-src="images/GithubSmall.png" title="" alt="images/GithubSmall.png"><img src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/GithubSmallWhite_wz0sbthy.png" style="display: none; position: absolute; top: 0px; left: 0px; z-index: 3; width: 20px; height: 20px;">
+</a>
+<script>
+	x5engine.boot.push(function () {
+		 x5engine.imagefx.overlay('#imFooter_imObjectImage_47_container img', '#imFooter_imObjectImage_47', 'images/GithubSmallWhite_wz0sbthy.png', 'bottom-right');
+	});
+</script>
+</div></div></div><div id="imFooter_imObjectImage_48_wrapper" class="template-object-wrapper"><div id="imFooter_imObjectImage_48"><div id="imFooter_imObjectImage_48_container"><a href="https://www.youtube.com/channel/UCqB62erO_ESaMwo6sHwDo9g" target="_blank"><img src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/YouTubeSmall.png" data-src="images/YouTubeSmall.png" title="" alt="images/YouTubeSmall.png"><img src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/YouTubeSmallWhite_2cgj4hsx.png" style="display: none; position: absolute; top: 0px; left: 0px; z-index: 3; width: 29px; height: 20px;">
+</a>
+<script>
+	x5engine.boot.push(function () {
+		 x5engine.imagefx.overlay('#imFooter_imObjectImage_48_container img', '#imFooter_imObjectImage_48', 'images/YouTubeSmallWhite_2cgj4hsx.png', 'bottom-right');
+	});
+</script>
+</div></div></div><div id="imFooter_imHTMLObject_49_wrapper" class="template-object-wrapper"><div id="imFooter_imHTMLObject_49" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><button class="button2" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;disclaimer.html&#39;, null, false)"><span>Disclaimer</span></button>
+
+<button class="button2" style="vertical-align:middle" onclick="window.open(&#39;files/Nederland-ICT-Voorwaarden-2014-EN.pdf&#39;)"><span>Terms and Conditions</span></button>
+
+<button class="button2" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;privacy.html&#39;, null, false)"><span>Privacy statement</span></button>
+</div></div><div id="imFooter_imObjectSearch_50_wrapper" class="template-object-wrapper"><div id="imFooter_imObjectSearch_50"><form id="imFooter_imObjectSearch_50_form" action="https://qengineering.eu/imsearch.php" method="get"><fieldset><input type="text" id="imFooter_imObjectSearch_50_field" name="search" value=""></fieldset></form></div></div><div id="imFooter_imHTMLObject_51_wrapper" class="template-object-wrapper"><div id="imFooter_imHTMLObject_51" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-opencv-4.5-on-raspberry-pi-4.html&#39;, null, false)"><span>OpenCV 4.5</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-1.15.2-on-raspberry-pi-4.html&#39;, null, false)"><span>TensorFlow 1.15.2</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-2.2.0-on-raspberry-pi-4.html&#39;, null, false)"><span>TensorFlow 2.2.0</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-2-lite-on-raspberry-pi-4.html&#39;, null, false)"><span>TensorFlow Lite</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-opencl-on-raspberry-pi-3.html&#39;, null, false)"><span>OpenCL</span></button>
+</div></div><div id="imFooter_imHTMLObject_52_wrapper" class="template-object-wrapper"><div id="imFooter_imHTMLObject_52" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;deep-learning-with-opencv-on-raspberry-pi-4.html&#39;, null, false)"><span>OpenCV</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-ncnn-on-raspberry-pi-4.html&#39;, null, false)"><span>ncnn</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-mnn-on-raspberry-pi-4.html&#39;, null, false)"><span>MNN</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-paddlepaddle-on-raspberry-pi-4.html&#39;, null, false)"><span>Paddle 2.0.0</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-paddle-lite-on-raspberry-pi-4.html&#39;, null, false)"><span>Paddle Lite</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-armnn-on-raspberry-pi-4.html&#39;, null, false)"><span>ARMnn</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-mxnet-on-raspberry-pi-4.html&#39;, null, false)"><span>MXNet</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-caffe-on-raspberry-pi-4.html&#39;, null, false)"><span>Caffe</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-pytorch-on-raspberry-pi-4.html&#39;, null, false)"><span>PyTorch</span></button>
+</div></div><div id="imFooter_imHTMLObject_53_wrapper" class="template-object-wrapper"><div id="imFooter_imHTMLObject_53" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;deep-learning-with-raspberry-pi-and-alternatives.html&#39;, null, false)"><span>Deep learning</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;google-corals-tpu-explained.html&#39;, null, false)"><span>Google Edge TPU</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;deep-learning-with-fpga-aka-bnn.html&#39;, null, false)"><span>FPGA aka BNN</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;computer-vision-with-raspberry-pi-and-alternatives.html&#39;, null, false)"><span>Computer vision</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-ubuntu-20.04-on-raspberry-pi-4.html&#39;, null, false)"><span>Ubuntu, TF Lite</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-caffe-on-ubuntu-20.04-with-opencv-4.4.html&#39;, null, false)"><span>Caffe, OpenCV, Ubuntu</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;jevois.html&#39;, null, false)"><span>Jevois</span></button>
+</div></div><div id="imFooter_imHTMLObject_54_wrapper" class="template-object-wrapper"><div id="imFooter_imHTMLObject_54" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;overclocking-the-raspberry-pi-4.html&#39;, null, false)"><span>Overclocking to 2 GHz</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;opencv-c-examples-on-raspberry-pi.html&#39;, null, false)"><span>OpenCV examples</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;deep-learning-algorithms-for-raspberry-pi-and-alternatives.html&#39;, null, false)"><span>Deep learn algorithms</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;protect-the-raspberry-pi-4-sd-flashcard.html&#39;, null, false)"><span>Protect your SD card</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-qt5-with-opencv-on-raspberry-pi-4.html&#39;, null, false)"><span>Qt5 + OpenCV</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-vulkan-on-raspberry-pi.html&#39;, null, false)"><span>Vulkan + PiKiss</span></button>
+</div></div><div id="imFooter_imHTMLObject_55_wrapper" class="template-object-wrapper"><div id="imFooter_imHTMLObject_55" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;overclocking-the-jetson-nano.html&#39;, null, false)"><span>Overclocking to 2 GHz</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-opencv-4.5-on-jetson-nano.html&#39;, null, false)"><span>OpenCV 4.5</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-2.4.0-on-jetson-nano.html&#39;, null, false)"><span>TensorFlow 2.4.1</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-2-lite-on-jetson-nano.html&#39;, null, false)"><span>TensorFlow Lite</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-ncnn-on-jetson-nano.html&#39;, null, false)"><span>ncnn</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-mnn-on-jetson-nano.html&#39;, null, false)"><span>MNN</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-paddle-on-jetson-nano.html&#39;, null, false)"><span>Paddle + Lite</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-caffe-on-jetson-nano.html&#39;, null, false)"><span>Caffe</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-pytorch-on-jetson-nano.html&#39;, null, false)"><span>PyTorch</span></button>
+</div></div><div id="imFooter_imHTMLObject_56_wrapper" class="template-object-wrapper"><div id="imFooter_imHTMLObject_56" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;opencv-c-examples-on-raspberry-pi.html&#39;, null, false)"><span>OpenCV examples</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-ubuntu-20.04-on-raspberry-pi-4.html&#39;, null, false)"><span>Ubuntu + TF Lite</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-opencl-on-raspberry-pi-3.html&#39;, null, false)"><span>OpenCL</span></button>
+<button class="button" style="font-size : 15px;" onclick="return x5engine.utils.location(&#39;deep-learning-software-for-raspberry-pi-and-alternatives.html&#39;, null, false)"><span>Frameworks</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;deep-learning-with-opencv-on-raspberry-pi-4.html&#39;, null, false)"><span>OpenCV</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-ncnn-on-raspberry-pi-4.html&#39;, null, false)"><span>ncnn</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-mnn-on-raspberry-pi-4.html&#39;, null, false)"><span>MNN</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-paddlpaddle-on-raspberry-pi-4.html&#39;, null, false)"><span>Paddle 2.0.0</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-paddle-lite-on-raspberry-pi-4.html&#39;, null, false)"><span>Paddle Lite</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-armnn-on-raspberry-pi-4.html&#39;, null, false)"><span>ARMnn</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-mxnet-on-raspberry-pi-4.html&#39;, null, false)"><span>MXNet</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-caffe-on-raspberry-pi-4.html&#39;, null, false)"><span>Caffe</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-pytorch-on-raspberry-pi-4.html&#39;, null, false)"><span>PyTorch</span></button>
+
+<button class="button" style="font-size : 15px;"><span>Jetson Nano</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;overclocking-the-jetson-nano.html&#39;, null, false)"><span>Overclocking to 2 GHz</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-opencv-4.5-on-jetson-nano.html&#39;, null, false)"><span>OpenCV 4.5</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-2.4.0-on-jetson-nano.html&#39;, null, false)"><span>TensorFlow 2.4.1</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-2-lite-on-jetson-nano.html&#39;, null, false)"><span>TensorFlow Lite</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-ncnn-on-jetson-nano.html&#39;, null, false)"><span>ncnn</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-mnn-on-jetson-nano.html&#39;, null, false)"><span>MNN</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-paddle-on-jetson-nano.html&#39;, null, false)"><span>Paddle + Lite</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-caffe-on-jetson-nano.html&#39;, null, false)"><span>Caffe</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-pytorch-on-jetson-nano.html&#39;, null, false)"><span>PyTorch</span></button></div></div><div id="imFooter_imHTMLObject_57_wrapper" class="template-object-wrapper"><div id="imFooter_imHTMLObject_57" class="imHTMLObject" style="text-align: center; width: 100%; overflow: hidden;"><button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;deep-learning-with-raspberry-pi-and-alternatives.html&#39;, null, false)"><span>Deep learning</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;google-corals-tpu-explained.html&#39;, null, false)"><span>Google Edge TPU</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;deep-learning-with-fpga-aka-bnn.html&#39;, null, false)"><span>FPGA aka BNN</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;computer-vision-with-raspberry-pi-and-alternatives.html&#39;, null, false)"><span>Computer vision</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-caffe-on-ubuntu-20.04-with-opencv-4.4.html&#39;, null, false)"><span>Caffe, OpenCV, Ubuntu</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;jevois.html&#39;, null, false)"><span>Jevois</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;deep-learning-algorithms-for-raspberry-pi-and-alternatives.html&#39;, null, false)"><span>DL algorithms</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;overclocking-the-raspberry-pi-4.html&#39;, null, false)"><span>Overclocking to 2 GHz</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;protect-the-raspberry-pi-4-sd-flashcard.html&#39;, null, false)"><span>Protect your SD card</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-qt5-with-opencv-on-raspberry-pi-4.html&#39;, null, false)"><span>Qt5 + OpenCV</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-vulkan-on-raspberry-pi.html&#39;, null, false)"><span>Vulkan + PiKiss</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-opencv-4.5-on-raspberry-pi-4.html&#39;, null, false)"><span>OpenCV 4.5 (32)</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-1.15.2-on-raspberry-pi-4.html&#39;, null, false)"><span>TensorFlow 1.15.2 (32)</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-2.2.0-on-raspberry-pi-4.html&#39;, null, false)"><span>TensorFlow 2.2.0 (32)</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-2-lite-on-raspberry-pi-4.html&#39;, null, false)"><span>TensorFlow Lite (32)</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-raspberry-64-os.html&#39;, null, 
+false)"><span>64 bit OS + USB boot</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-opencv-4.5-on-raspberry-64-os.html&#39;, null, false)"><span>OpenCV 4.5 (64)</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-opencv-lite-on-raspberry-64-os.html&#39;, null, false)"><span>OpenCV Lite (64)</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-2.4.0-on-raspberry-64-os.html&#39;, null, false)"><span>TensorFlow 2.4.1 (64)</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;install-tensorflow-2-lite-on-raspberry-64-os.html&#39;, null, false)"><span>TensorFlow Lite (64)</span></button>
+<button class="button" style="vertical-align:middle" onclick="return x5engine.utils.location(&#39;deep-learning-examples-on-raspberry-32-64-os.html&#39;, null, false)"><span>DL examples (32/64)</span></button></div></div><div id="imFooter_imObjectImage_58_wrapper" class="template-object-wrapper"><div id="imFooter_imObjectImage_58"><div id="imFooter_imObjectImage_58_container"><a href="https://github.com/Qengineering/RPi-image" target="_blank"><img src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/SDcardSmall.png" data-src="images/SDcardSmall.png" title="" alt="images/SDcardSmall.png"><img src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/SDcardSmallWhite_ps67y9gy.png" style="display: none; position: absolute; top: 0px; left: 0px; z-index: 3; width: 28px; height: 20px;">
+</a>
+<script>
+	x5engine.boot.push(function () {
+		 x5engine.imagefx.overlay('#imFooter_imObjectImage_58_container img', '#imFooter_imObjectImage_58', 'images/SDcardSmallWhite_ps67y9gy.png', 'bottom-right');
+	});
+</script>
+</div></div></div></div>
+					</footer>
+				</div>
+				<span class="imHidden"><a href="https://qengineering.eu/install-opencv-4.5-on-jetson-nano.html#imGoToCont" title="Read this page again">Back to content</a></span>
+			</div>
+		</div>
+		
+		<noscript class="imNoScript"><div class="alert alert-red">To use this website you must enable JavaScript.</div></noscript>
+	
+
+<script src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/modernizr-custom.js.descarga"></script><script src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/x5engine.deferrable.js.descarga"></script><script src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/l10n.js.descarga"></script><script src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/x5cartengine.js.descarga"></script><script src="./Install OpenCV 4.5 on Jetson Nano - Q-engineering_files/x5settings.js.descarga"></script><div id="media-query-to-js" style=""></div></body></html>
